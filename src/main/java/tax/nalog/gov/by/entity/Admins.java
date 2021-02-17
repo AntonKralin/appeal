@@ -3,29 +3,48 @@
  */
 package tax.nalog.gov.by.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 /**
  * @author AntonKralin
  *
  */
+
+@Entity
+@Table(name = "admins")
 public class Admins {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String login;
 	private String password;
-	private int id_imns;
-	private int id_access;
+	private int access;
+	
+	
+	@ManyToOne (fetch = FetchType.LAZY)
+	@JoinColumn(name="id_imns")
+	private Imns admin_imns;
+	
 	
 	public Admins() {
 		
 	}
 
-	public Admins(int id, String login, String password, int id_imns, int id_access) {
+	public Admins(int id, String login, String password, Imns admin_imns, int access) {
 		super();
 		this.id = id;
 		this.login = login;
 		this.password = password;
-		this.id_imns = id_imns;
-		this.id_access = id_access;
+		this.admin_imns = admin_imns;
+		this.access = access;
 	}
 
 	public int getId() {
@@ -52,20 +71,29 @@ public class Admins {
 		this.password = password;
 	}
 
-	public int getId_imns() {
-		return id_imns;
+	public Imns getImns() {
+		return admin_imns;
 	}
 
-	public void setId_imns(int id_imns) {
-		this.id_imns = id_imns;
+	public void setImns(Imns admin_imns) {
+		this.admin_imns = admin_imns;
 	}
 
-	public int getId_access() {
-		return id_access;
+	public int getAccess() {
+		return access;
 	}
 
-	public void setId_access(int id_access) {
-		this.id_access = id_access;
+	public void setAccess(int access) {
+		this.access = access;
 	}
 	
+	@Override
+	public String toString() {
+		return "models.Admins{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password=" + password +
+                ", access=" + access +
+                '}';
+	}
 }

@@ -3,12 +3,29 @@
  */
 package tax.nalog.gov.by.entity;
 
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+
 /**
  * @author AntonKralin
  *
  */
+
+@Entity
+@Table(name = "imns")
 public class Imns {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private int number;
 	private String name;
@@ -16,10 +33,16 @@ public class Imns {
 	private String address;
 	private String post;
 	private String mail;
+	@Column(name = "shot_name")
 	private String shotName;
 	
-	public Imns() {
-		
+	@OneToMany(mappedBy="admin_imns", fetch=FetchType.LAZY)
+	private List<Admins> admins;
+	
+	@OneToMany(mappedBy="admin_appeals", fetch=FetchType.LAZY)
+	private List<Appeals> appeals;
+	
+	public Imns() {	
 	}
 	
 	public Imns(int id, int number, String name, String unp, String address, String post, String mail,
@@ -83,4 +106,13 @@ public class Imns {
 		this.shotName = shotName;
 	}
 	
+	@Override
+	public String toString() {
+		return "models.Imns{" +
+                "id=" + id +
+                ", shotname='" + shotName + '\'' +
+                ", age=" + number +
+                ", unp=" + unp +
+                '}';
+	}
 }

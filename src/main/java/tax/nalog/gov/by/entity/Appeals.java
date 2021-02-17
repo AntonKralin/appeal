@@ -3,13 +3,27 @@
  */
 package tax.nalog.gov.by.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 /**
  * @author AntonKralin
  *
  */
-public class Appeals {
 
-	private int 	id_appeals;
+@Entity
+@Table(name = "appeals")
+public class Appeals {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int 	id;
 	private String 	date;
 	private String 	who;
 	private String 	what;
@@ -17,16 +31,20 @@ public class Appeals {
 	private String 	done;
 	private String 	type;
 	private String 	unit;
-	private int 	id_imns;
+	
+	
+	@ManyToOne (fetch = FetchType.LAZY)
+	@JoinColumn(name="id_imns")
+	private Imns appeal_imns;
 	
 	public Appeals() {
 		
 	}
 
-	public Appeals(int id_appeals, String date, String who, String what, String result, String done, String type,
-			String unit, int id_imns) {
+	public Appeals(int id, String date, String who, String what, String result, String done, String type,
+			String unit, Imns appeal_imns) {
 		super();
-		this.id_appeals = id_appeals;
+		this.id = id;
 		this.date = date;
 		this.who = who;
 		this.what = what;
@@ -34,15 +52,15 @@ public class Appeals {
 		this.done = done;
 		this.type = type;
 		this.unit = unit;
-		this.id_imns = id_imns;
+		this.appeal_imns = appeal_imns;
 	}
 
 	public int getId_appeals() {
-		return id_appeals;
+		return id;
 	}
 
-	public void setId_appeals(int id_appeals) {
-		this.id_appeals = id_appeals;
+	public void setId_appeals(int id) {
+		this.id = id;
 	}
 
 	public String getDate() {
@@ -101,12 +119,12 @@ public class Appeals {
 		this.unit = unit;
 	}
 
-	public int getId_imns() {
-		return id_imns;
+	public Imns getId_imns() {
+		return appeal_imns;
 	}
 
-	public void setId_imns(int id_imns) {
-		this.id_imns = id_imns;
+	public void setId_imns(Imns appeal_imns) {
+		this.appeal_imns = appeal_imns;
 	}
 	
 }
