@@ -17,7 +17,6 @@ public class IndexController {
 	public IndexController() {
 		logger.info("IndexController");
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
-		//ctx.getBean("hibernateSession");
 		ctx.close();
 	}
 	
