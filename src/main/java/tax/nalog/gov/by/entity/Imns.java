@@ -39,7 +39,7 @@ public class Imns {
 	@OneToMany(mappedBy="admin_imns", fetch=FetchType.LAZY)
 	private List<Admins> admins;
 	
-	@OneToMany(mappedBy="admin_appeals", fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="appeal_imns", fetch=FetchType.LAZY)
 	private List<Appeals> appeals;
 	
 	public Imns() {	
