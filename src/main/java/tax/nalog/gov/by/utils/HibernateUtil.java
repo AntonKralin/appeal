@@ -1,6 +1,8 @@
 package tax.nalog.gov.by.utils;
 
 import java.util.Properties;
+
+import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -10,11 +12,12 @@ import tax.nalog.gov.by.entity.*;
 
 public class HibernateUtil {
 	private SessionFactory sessionFactory;
+	private static final Logger logger = Logger.getLogger(HibernateUtil.class);
 	
 	public SessionFactory getMySQLSessionFactory() {
 		if (sessionFactory == null) {
 			try {
-				
+				logger.info("create MySQL SessionFactory");
 				//AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
 				//XMLSettings xml = ctx.getBean(XMLSettings.class);
 				//ctx.close();
@@ -51,7 +54,7 @@ public class HibernateUtil {
 	public SessionFactory getH2SessionFactory() {
 		if (sessionFactory == null) {
 			try {
-				
+				logger.info("create H2 SessionFactory");
 				//ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
 				//XMLSettings xml = ctx.getBean(XMLSettings.class);
 				String pass = "12345678"; // xml.getBDPassword();
