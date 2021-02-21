@@ -1,13 +1,11 @@
 package tax.nalog.gov.by.form;
 
-import org.apache.log4j.Logger;
 import tax.nalog.gov.by.entity.Admins;
 
 public class PasswordForm {
 		private String username;
 		private String password;
 		private int access;
-		private static final Logger logger = Logger.getLogger(PasswordForm.class);
 		
 		public PasswordForm() {
 		}

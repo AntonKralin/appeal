@@ -30,7 +30,7 @@
 		</div>
 		
 		<div id="log_out">
-			<H9> Учет компьютерной техники</H9>
+			<label> Учет компьютерной техники</label>
 			<a href="/UchetKT" id="log_out" class="button">Выйти</a>
 		</div>
 		
