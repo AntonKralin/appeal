@@ -41,7 +41,7 @@ public class AdminsService {
 		HibernateSession hSession = (HibernateSession)ctx.getBean("hibernateSession");
 		ctx.close();
 		Session session = hSession.getSession();
-		String hql = "FROM Access where login = :param";
+		String hql = "FROM Admins where login = :param";
 		Query<Admins> query = session.createQuery(hql,Admins.class);
 		query.setParameter("param", login);
 		List<Admins> list = query.getResultList();

@@ -1,6 +1,6 @@
 ﻿<%@taglib uri = "http://www.springframework.org/tags/form" prefix = "form"%>
 <head>
-	<title>«Учет компьютерной техники» | Авторизация</title>
+	<title>«Жалобы» | Авторизация</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="Жалобы" />
 	<meta name="keywords" content="Жалобы" />

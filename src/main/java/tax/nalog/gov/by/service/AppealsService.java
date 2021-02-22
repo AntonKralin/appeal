@@ -4,12 +4,17 @@ import java.util.List;
 
 import tax.nalog.gov.by.dao.AppealsDAO;
 import tax.nalog.gov.by.entity.Appeals;
+import tax.nalog.gov.by.form.AppearDataForm;
 
 public class AppealsService {
 	private static AppealsDAO dao;
 	
 	public AppealsService() {
 		dao = new AppealsDAO();
+	}
+	
+	public AppealsService(AppearDataForm appearDataForm) {
+		
 	}
 	
 	public void save(Appeals entity) {

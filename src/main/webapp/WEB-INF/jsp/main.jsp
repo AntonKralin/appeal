@@ -4,10 +4,10 @@
 <html>
 
 	<head>
-		<title>«Учет компьютерной техники»</title>
+		<title>«Жалобы»</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="description" content="Учет компьютерной техники" />
-		<meta name="keywords" content="Учет компьютерной техники" />
+		<meta name="description" content="Жалобы" />
+		<meta name="keywords" content="Жалобы" />
 		<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 		<link rel="stylesheet" href="resources/styles/main.css" type="text/css" />
 		<link rel="stylesheet" href="resources/styles/jquery-ui.min.css" type="text/css" />
@@ -22,24 +22,11 @@
 
 	<body>
 		<div id="imns_label">
-			<form:form method = "POST" modelAttribute="imnsForm" action = "main">
-				<form:select path="imns" onchange="this.form.submit();">
-					<form:options items = "${imnsList}" />
-				</form:select>
-			</form:form>
+			${imnsname}
 		</div>
-		
+
 		<div id="log_out">
-			<label> Учет компьютерной техники</label>
 			<a href="/UchetKT" id="log_out" class="button">Выйти</a>
-		</div>
-		
-		<div id="tabs">
-			<div class="tab">
-				<form:form method ="POST" action="main"> 
-					<input type = "submit" value = "Компьютеры"/>
-				</form:form>	
-			</div>
 		</div>
 		
 		<div id="work">
@@ -55,29 +42,27 @@
 		</div>
 		
 		<div id="bottom">
-			<button id="user" onclick="user_click();">Пользователи</button>
+			<button id="appeal" onclick="appeal_click();">Жалобы</button>
 		</div>
 		
 <!-- ---------------------------------------------------------------------------------------------------------------------------------------------- -->		
-		<div id="user_dialog" style="display:none;" title="Пользователи">
-			<form:form method="POST" modelAttribute="userForm" action="choose_user">
-				<form:select path="user_select" onchange="this.form.submit();">
-					<form:option value="0">Выберите пользователя</form:option>
-					<form:options items="${list_users}"/>
-				</form:select>
-			</form:form>
-			<form:form method="POST" modelAttribute="userDataForm" action="user_save">
-				<p><form:input path="fio" pattern='^[А-Яа-яЁё\s]+$' title='Фамилия Имя Отчество' placeholder="Фамилия Имя Отчество" style="width:470px"/></p>
-				<p><form:input path="ip"  pattern="\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}" title='IP адрес (xxx.xxx.xxx.xxx)' placeholder="IP адрес (xxx.xxx.xxx.xxx)" style="width:470px"/></p>
-				<p><form:input path="ad"  title="Логин AD" placeholder="Логин AD"  size="60px"/></p>
+		<div id="appeal_dialog" style="display:none;" title="Жалоба">
+			<form:form method="POST" modelAttribute="appearDataForm" action="appeal_save">
+				<p><form:input path="date" title='Дата рассмотрения жалобы / Дата и номер письма МНС' placeholder="Дата рассмотрения жалобы / Дата и номер письма МНС" style="width:1000px"/></p>
+				<p><form:input path="who"  title='Наименование плательщика' placeholder="Наименование плательщика" style="width:1000px"/></p>
+				<p><form:input path="what"  title="Суть жалобы / Суть нарушений в письме МНС" placeholder="Суть жалобы / Суть нарушений в письме МНС"  style="width:1000px"/></p>
+				<p><form:input path="result"  title="Результат рассмотрения жалобы (Удовлетворена или нет)" placeholder="Результат рассмотрения жалобы"  style="width:1000px"/></p>
+				<p><form:input path="done"  title="Что сделано / Результат проделанной работы, направленной на устранение нарушений, отраженных в письме МНС" placeholder="Что сделано / Результат проделанной работы, направленной на устранение нарушений, отраженных в письме МНС"  style="width:1000px"/></p>
+				<p><form:input path="type"  title="Вид документа" placeholder="Вид документа"  style="width:1000px"/></p>
+				<p><form:input path="unit"  title="Управление, самостоятельный отдел, к компетенции которого относится рассматриваемый вопрос" placeholder="Управление, самостоятельный отдел"  style="width:1000px"/></p>
 				<p><input type="submit" name="save" value="Сохранить" title="Сохранить пользователя"></p>
 			</form:form>
 		</div>
 	</body>
 	<script type="text/javascript">
-		$( "#user_dialog" ).dialog({
+		$( "#appeal_dialog" ).dialog({
 			autoOpen: false,
-			width: 500
+			width: 1100
 		})
 	</script>
 </html>

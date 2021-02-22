@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import tax.nalog.gov.by.utils.SpringConfig;
 import tax.nalog.gov.by.entity.Admins;
 import tax.nalog.gov.by.form.PasswordForm;
+import tax.nalog.gov.by.form.AppearDataForm;
 import tax.nalog.gov.by.service.AdminsService;
 
 @Controller
@@ -25,8 +26,8 @@ public class IndexController {
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView mainViewGet(ModelMap modelMap) throws Exception{
-		logger.info("mainViewGet");
+	public ModelAndView indexViewGet(ModelMap modelMap) throws Exception{
+		logger.info("indexViewGet");
 		ModelAndView model = new ModelAndView("index");
 		model.addObject("passwordForm", new PasswordForm());
 		modelMap.addAttribute("loginfo", "");
@@ -34,8 +35,8 @@ public class IndexController {
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public ModelAndView mainViewPost(@ModelAttribute("passwordForm")PasswordForm passwordForm, ModelMap model) throws Exception{
-		logger.info("mainViewGet");
+	public ModelAndView indexViewPost(@ModelAttribute("passwordForm")PasswordForm passwordForm, ModelMap model) throws Exception{
+		logger.info("indexViewPost");
 		
 		AdminsService adminService = new AdminsService();
 		Admins admin = adminService.findByLogin(passwordForm.getUsername());
@@ -58,7 +59,30 @@ public class IndexController {
 		
 		logger.info("autorization:" + rez);
 	    modelView = new ModelAndView("main");
+	    modelView.addObject("appearDataForm", new AppearDataForm());
 		
 		return modelView;
 	}
+	
+	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	public ModelAndView mainViewGet(ModelMap modelMap) throws Exception{
+		logger.info("mainVievGet");
+		
+		ModelAndView modelView = new ModelAndView("main");
+		
+		return modelView;
+	}
+	
+	
+	  @RequestMapping(value = "/main", method = RequestMethod.POST) 
+	  public ModelAndView mainViewPost(@ModelAttribute("appearDataForm") AppearDataForm
+	  appearDataForm, ModelMap modelMap) throws Exception{
+		  logger.info("mainVievGet");
+		  
+		  ModelAndView modelView = new ModelAndView("main");
+		  
+		  return modelView; 
+	  }
+	 
+	
 }
