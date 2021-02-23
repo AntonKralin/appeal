@@ -26,7 +26,7 @@
 		</div>
 
 		<div id="log_out">
-			<a href="/UchetKT" id="log_out" class="button">Выйти</a>
+			<a href="/appeal" id="log_out" class="button">Выйти</a>
 		</div>
 		
 		<div id="work">

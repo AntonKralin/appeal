@@ -20,7 +20,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "admins")
-public class Admins {
+public class Admins{
+
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
