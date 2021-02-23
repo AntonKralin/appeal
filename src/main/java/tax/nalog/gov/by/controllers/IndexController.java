@@ -1,6 +1,9 @@
 package tax.nalog.gov.by.controllers;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -18,6 +21,8 @@ import tax.nalog.gov.by.service.AdminsService;
 public class IndexController {
 	
 	private static final Logger logger = Logger.getLogger(IndexController.class);
+	 @Autowired 
+	 private HttpSession httpSession;
 	
 	public IndexController() {
 		logger.info("IndexController");
@@ -31,6 +36,7 @@ public class IndexController {
 		ModelAndView model = new ModelAndView("index");
 		model.addObject("passwordForm", new PasswordForm());
 		modelMap.addAttribute("loginfo", "");
+		System.out.println(httpSession.getId());
 		return model;
 	}
 	
@@ -58,6 +64,7 @@ public class IndexController {
 	    }
 		
 		logger.info("autorization:" + rez);
+		httpSession.setAttribute("admin", admin);
 	    modelView = new ModelAndView("main");
 	    modelView.addObject("appearDataForm", new AppearDataForm());
 		
@@ -67,6 +74,9 @@ public class IndexController {
 	@GetMapping("/main")
 	public ModelAndView mainViewGet(ModelMap modelMap) throws Exception{
 		logger.info("mainVievGet");
+		
+		Admins admin = (Admins)httpSession.getAttribute("admin");
+		System.out.println(admin);
 		
 		ModelAndView modelView = new ModelAndView("main");
 		
@@ -78,6 +88,9 @@ public class IndexController {
 	  public ModelAndView mainViewPost(@ModelAttribute("appearDataForm") AppearDataForm
 	  appearDataForm, ModelMap modelMap) throws Exception{
 		  logger.info("mainVievGet");
+		  
+		  Admins admin = (Admins)httpSession.getAttribute("admin");
+		  System.out.println(admin);
 		  
 		  ModelAndView modelView = new ModelAndView("main");
 		  
