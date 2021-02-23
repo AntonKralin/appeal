@@ -4,10 +4,10 @@ import java.util.List;
 import tax.nalog.gov.by.dao.ImnsDAO;
 import tax.nalog.gov.by.entity.Imns;
 
-public class ImnsSerivce {
+public class ImnsService {
 	private static ImnsDAO dao;
 	
-	public ImnsSerivce() {
+	public ImnsService() {
 		dao = new ImnsDAO(); 
 	}
 	

@@ -1,7 +1,6 @@
 package tax.nalog.gov.by.controllers;
 
 import javax.servlet.http.HttpSession;
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -13,9 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import tax.nalog.gov.by.utils.SpringConfig;
 import tax.nalog.gov.by.entity.Admins;
+import tax.nalog.gov.by.entity.Imns;
 import tax.nalog.gov.by.form.PasswordForm;
 import tax.nalog.gov.by.form.AppearDataForm;
 import tax.nalog.gov.by.service.AdminsService;
+import tax.nalog.gov.by.service.AppealsService;
 
 @Controller
 public class IndexController {
@@ -67,6 +68,8 @@ public class IndexController {
 		httpSession.setAttribute("admin", admin);
 	    modelView = new ModelAndView("main");
 	    modelView.addObject("appearDataForm", new AppearDataForm());
+	    Imns imns = admin.getImns();
+	    modelView.addObject("imnsname", imns.getShotName());
 		
 		return modelView;
 	}
@@ -89,8 +92,13 @@ public class IndexController {
 	  appearDataForm, ModelMap modelMap) throws Exception{
 		  logger.info("mainVievGet");
 		  
-		  Admins admin = (Admins)httpSession.getAttribute("admin");
-		  System.out.println(admin);
+		  Admins admin = (Admins)httpSession.getAttribute("admin");		  
+		  if (admin == null) {
+			  return null;
+		  }
+		  
+		  AppealsService appealService = new AppealsService();
+		  appealService.createEntity(appearDataForm, admin.getImns());
 		  
 		  ModelAndView modelView = new ModelAndView("main");
 		  

@@ -47,7 +47,8 @@
 		
 <!-- ---------------------------------------------------------------------------------------------------------------------------------------------- -->		
 		<div id="appeal_dialog" style="display:none;" title="Жалоба">
-			<form:form method="POST" modelAttribute="appearDataForm" action="appeal_save">
+			<form:form method="POST" modelAttribute="appearDataForm" action="/appeal/main">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 				<p><form:input path="date" title='Дата рассмотрения жалобы / Дата и номер письма МНС' placeholder="Дата рассмотрения жалобы / Дата и номер письма МНС" style="width:1000px"/></p>
 				<p><form:input path="who"  title='Наименование плательщика' placeholder="Наименование плательщика" style="width:1000px"/></p>
 				<p><form:input path="what"  title="Суть жалобы / Суть нарушений в письме МНС" placeholder="Суть жалобы / Суть нарушений в письме МНС"  style="width:1000px"/></p>
