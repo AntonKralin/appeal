@@ -4,9 +4,9 @@ import org.apache.log4j.Logger;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import tax.nalog.gov.by.utils.SpringConfig;
 import tax.nalog.gov.by.entity.Admins;
@@ -25,7 +25,7 @@ public class IndexController {
 		ctx.close();
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@GetMapping("/")
 	public ModelAndView indexViewGet(ModelMap modelMap) throws Exception{
 		logger.info("indexViewGet");
 		ModelAndView model = new ModelAndView("index");
@@ -34,7 +34,7 @@ public class IndexController {
 		return model;
 	}
 	
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@PostMapping("/")
 	public ModelAndView indexViewPost(@ModelAttribute("passwordForm")PasswordForm passwordForm, ModelMap model) throws Exception{
 		logger.info("indexViewPost");
 		
@@ -64,7 +64,7 @@ public class IndexController {
 		return modelView;
 	}
 	
-	@RequestMapping(value = "/main", method = RequestMethod.GET)
+	@GetMapping("/main")
 	public ModelAndView mainViewGet(ModelMap modelMap) throws Exception{
 		logger.info("mainVievGet");
 		
@@ -74,7 +74,7 @@ public class IndexController {
 	}
 	
 	
-	  @RequestMapping(value = "/main", method = RequestMethod.POST) 
+	  @PostMapping("/main") 
 	  public ModelAndView mainViewPost(@ModelAttribute("appearDataForm") AppearDataForm
 	  appearDataForm, ModelMap modelMap) throws Exception{
 		  logger.info("mainVievGet");
