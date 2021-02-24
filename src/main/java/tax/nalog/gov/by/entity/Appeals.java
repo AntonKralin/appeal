@@ -55,11 +55,11 @@ public class Appeals {
 		this.appeal_imns = appeal_imns;
 	}
 
-	public int getId_appeals() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId_appeals(int id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

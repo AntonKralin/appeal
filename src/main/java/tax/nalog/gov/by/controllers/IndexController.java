@@ -1,5 +1,7 @@
 package tax.nalog.gov.by.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import tax.nalog.gov.by.utils.SpringConfig;
 import tax.nalog.gov.by.entity.Admins;
+import tax.nalog.gov.by.entity.Appeals;
 import tax.nalog.gov.by.entity.Imns;
 import tax.nalog.gov.by.form.PasswordForm;
 import tax.nalog.gov.by.form.AppearDataForm;
@@ -69,7 +72,15 @@ public class IndexController {
 	    modelView = new ModelAndView("main");
 	    modelView.addObject("appearDataForm", new AppearDataForm());
 	    Imns imns = admin.getImns();
+	    AppealsService appealsService = new AppealsService();
+	    List<Appeals> listAppeals = null;
+	    if (admin.getAccess() == 1) {
+	    	listAppeals = appealsService.findAll();
+	    }else {
+	    	listAppeals = appealsService.getListByImns(imns);
+	    }
 	    modelView.addObject("imnsname", imns.getShotName());
+	    modelView.addObject("appealsList", listAppeals);
 		
 		return modelView;
 	}
@@ -97,10 +108,20 @@ public class IndexController {
 			  return null;
 		  }
 		  
-		  AppealsService appealService = new AppealsService();
-		  appealService.createEntity(appearDataForm, admin.getImns());
+		  AppealsService appealsService = new AppealsService();
+		  appealsService.createEntity(appearDataForm, admin.getImns());
 		  
 		  ModelAndView modelView = new ModelAndView("main");
+		  modelView.addObject("appearDataForm", new AppearDataForm());
+		  Imns imns = admin.getImns();
+		  List<Appeals> listAppeals = null;
+		  if (admin.getAccess() == 1) {
+		    	listAppeals = appealsService.findAll();
+		  }else {
+		    	listAppeals = appealsService.getListByImns(imns);
+		  }
+		  modelView.addObject("imnsname", imns.getShotName());
+		  modelView.addObject("appealsList", listAppeals);
 		  
 		  return modelView; 
 	  }

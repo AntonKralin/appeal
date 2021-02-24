@@ -49,7 +49,7 @@ public class AdminsDAO {
 	@SuppressWarnings("unchecked")
 	public List<Admins> findAll(){
 		Session session = hSession.getSession();
-		List<Admins> entitys = (List<Admins>)session.createQuery("From Imns").list();
+		List<Admins> entitys = (List<Admins>)session.createQuery("From Admins").list();
 		return entitys;
  	}
 	

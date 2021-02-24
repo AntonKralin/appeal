@@ -5,7 +5,7 @@
 
 	<head>
 		<title>«Жалобы»</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
 		<meta name="description" content="Жалобы" />
 		<meta name="keywords" content="Жалобы" />
 		<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
@@ -16,6 +16,7 @@
 		<script type="text/javascript" src="resources/js/functions.js"></script>
 		<script type="text/javascript" src="resources/js/jquery.js"></script>
 		<script type="text/javascript" src="resources/js/jquery1.js"></script>
+		<script type="text/javascript" src="resources/js/sort.js">
 		<script type="text/javascript" src="resources/js/jquery-ui.min.js"></script>
 	
 	</head>
@@ -33,11 +34,34 @@
 			<table border="1" width="100%" cellpading="1" class="sortable">
 				<thead>
 					<tr>
-						<c:forEach var="head" items="${heads}">
-							<td>${head}</td>
-						</c:forEach>
+						<td width="2%">№ п/п</td>
+						<td width="10%">Дата и номер письма МНС</td>
+						<td width="13%">Наименование плательщика</td>
+						<td width="28%">Суть жалобы</td>
+						<td width="10%">Результат рассмотрения жалобы</td>
+						<td width="23%">Что сделано</td>
+						<td width="5%">Вид документа</td>
+						<td width="7%">Управление, самостоятельный отдел</td>
+						<td width="5%">ИМНС</td>
+						<td width="2%"></td>					
 					</tr>
 				</thead>
+				<tbody>		
+						<c:forEach var="appeals" items="${appealsList}">
+							<tr>
+								<td>${appeals.getId()}</td>
+								<td>${appeals.getDate()}</td>
+								<td>${appeals.getWho()}</td>
+								<td>${appeals.getWhat()}</td>
+								<td>${appeals.getResult()}</td>
+								<td>${appeals.getDone()}</td>
+								<td>${appeals.getType()}</td>
+								<td>${appeals.getUnit()}</td>
+								<td>${appeals.getId_imns().getNumber()}</td>
+								<td><input class="button" type="button" onclick="edit_fild(${appeals.getId()})" value="📒" title="изменить доступ"></td>
+							</tr>
+						</c:forEach>	
+				</tbody>
 			</table>
 		</div>
 		

@@ -14,7 +14,7 @@ import tax.nalog.gov.by.utils.SpringConfig;
 
 public class AdminsService {
 	private static AdminsDAO dao;
-	private static final Logger logger = Logger.getLogger(PasswordForm.class);
+	private static final Logger logger = Logger.getLogger(AdminsService.class);
 	
 	public AdminsService() {
 		dao = new AdminsDAO();

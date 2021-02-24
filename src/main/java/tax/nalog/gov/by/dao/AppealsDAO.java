@@ -49,7 +49,7 @@ public class AppealsDAO {
 	@SuppressWarnings("unchecked")
 	public List<Appeals> findAll(){
 		Session session = hSession.getSession();
-		List<Appeals> entitys = (List<Appeals>)session.createQuery("From Imns").list();
+		List<Appeals> entitys = (List<Appeals>)session.createQuery("From Appeals").list();
 		return entitys;
  	}
 	
