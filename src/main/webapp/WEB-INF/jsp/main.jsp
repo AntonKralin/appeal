@@ -13,10 +13,10 @@
 		<link rel="stylesheet" href="resources/styles/jquery-ui.min.css" type="text/css" />
 		<link rel="stylesheet" href="resources/styles/jquery-ui.structure.min.css" type="text/css" />
 		<link rel="stylesheet" href="resources/styles/jquery-ui.theme.min.css" type="text/css" />
-		<script type="text/javascript" src="resources/js/functions.js"></script>
+		<script type="text/javascript" src="resources/js/functions.js?1"></script>
 		<script type="text/javascript" src="resources/js/jquery.js"></script>
 		<script type="text/javascript" src="resources/js/jquery1.js"></script>
-		<script type="text/javascript" src="resources/js/sort.js">
+		<script type="text/javascript" src="resources/js/sort.js"></script>
 		<script type="text/javascript" src="resources/js/jquery-ui.min.js"></script>
 	
 	</head>
@@ -83,6 +83,12 @@
 				<p><input type="submit" name="save" value="Сохранить" title="Сохранить пользователя"></p>
 			</form:form>
 		</div>
+		
+		<form:form id="hides" method="GET" modelAttribute="appearIdForm" style="display:none" action="/appeal/main">
+			<form:input path="id_fild" id="id_fild" name="id_fild" />
+			<input type="submit" id="sub_hides" name="sub_hides">
+		</form:form>
+		
 	</body>
 	<script type="text/javascript">
 		$( "#appeal_dialog" ).dialog({

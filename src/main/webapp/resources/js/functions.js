@@ -3,3 +3,8 @@ function appeal_click(){
 	//dialog.showModal();
 	$( "#appeal_dialog" ).dialog( "open" );
 }
+
+function edit_fild(val){
+	document.getElementById('id_fild').value = val;
+	document.getElementById('hides').submit();
+}

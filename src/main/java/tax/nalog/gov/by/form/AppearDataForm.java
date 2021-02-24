@@ -1,5 +1,7 @@
 package tax.nalog.gov.by.form;
 
+import tax.nalog.gov.by.entity.Appeals;
+
 public class AppearDataForm {
 	private String 	date;
 	private String 	who;
@@ -80,6 +82,14 @@ public class AppearDataForm {
 		this.unit = unit;
 	}
 	
-	
+	public void setByAppeal(Appeals appeal) {
+		this.date = appeal.getDate();
+		this.who = appeal.getWho();
+		this.what = appeal.getWhat();
+		this.result = appeal.getResult();
+		this.done = appeal.getDone();
+		this.type = appeal.getType();
+		this.unit = appeal.getUnit();
+	} 
 	
 }

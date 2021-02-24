@@ -18,6 +18,7 @@ import tax.nalog.gov.by.entity.Appeals;
 import tax.nalog.gov.by.entity.Imns;
 import tax.nalog.gov.by.form.PasswordForm;
 import tax.nalog.gov.by.form.AppearDataForm;
+import tax.nalog.gov.by.form.AppearIdForm;
 import tax.nalog.gov.by.service.AdminsService;
 import tax.nalog.gov.by.service.AppealsService;
 
@@ -71,6 +72,7 @@ public class IndexController {
 		httpSession.setAttribute("admin", admin);
 	    modelView = new ModelAndView("main");
 	    modelView.addObject("appearDataForm", new AppearDataForm());
+	    modelView.addObject("appearIdForm", new AppearIdForm());
 	    Imns imns = admin.getImns();
 	    AppealsService appealsService = new AppealsService();
 	    List<Appeals> listAppeals = null;
@@ -86,21 +88,42 @@ public class IndexController {
 	}
 	
 	@GetMapping("/main")
-	public ModelAndView mainViewGet(ModelMap modelMap) throws Exception{
-		logger.info("mainVievGet");
-		
-		Admins admin = (Admins)httpSession.getAttribute("admin");
-		System.out.println(admin);
-		
-		ModelAndView modelView = new ModelAndView("main");
-		
-		return modelView;
+	public ModelAndView mainViewGet(@ModelAttribute("appearIdForm") AppearIdForm appearIdForm, 
+			ModelMap modelMap) throws Exception{
+		  logger.info("mainVievGet");
+		  
+		  Admins admin = (Admins)httpSession.getAttribute("admin");		  
+		  if (admin == null) {
+			  return null;
+		  }
+		  
+		  AppealsService appealsService = new AppealsService();
+		  AppearDataForm appealDataForm = new AppearDataForm();
+		  if (appearIdForm != null) { 
+			  Appeals appleal = appealsService.findByID(appearIdForm.getId_fild());
+			  appealDataForm.setByAppeal(appleal);
+		  }
+		  	  
+		  ModelAndView modelView = new ModelAndView("main");
+		  modelView.addObject("appearDataForm", appealDataForm);
+		  modelView.addObject("appearIdForm", new AppearIdForm());
+		  Imns imns = admin.getImns();
+		  List<Appeals> listAppeals = null;
+		  if (admin.getAccess() == 1) {
+		    	listAppeals = appealsService.findAll();
+		  }else {
+		    	listAppeals = appealsService.getListByImns(imns);
+		  }
+		  modelView.addObject("imnsname", imns.getShotName());
+		  modelView.addObject("appealsList", listAppeals);
+		  
+		  return modelView; 
 	}
 	
 	
 	  @PostMapping("/main") 
-	  public ModelAndView mainViewPost(@ModelAttribute("appearDataForm") AppearDataForm
-	  appearDataForm, ModelMap modelMap) throws Exception{
+	  public ModelAndView mainViewPost(@ModelAttribute("appearDataForm") AppearDataForm appearDataForm, 
+			  ModelMap modelMap) throws Exception{
 		  logger.info("mainVievGet");
 		  
 		  Admins admin = (Admins)httpSession.getAttribute("admin");		  
@@ -113,6 +136,7 @@ public class IndexController {
 		  
 		  ModelAndView modelView = new ModelAndView("main");
 		  modelView.addObject("appearDataForm", new AppearDataForm());
+		  modelView.addObject("appearIdForm", new AppearIdForm());
 		  Imns imns = admin.getImns();
 		  List<Appeals> listAppeals = null;
 		  if (admin.getAccess() == 1) {
