@@ -21,8 +21,9 @@ public class AppealsService {
 		dao = new AppealsDAO();
 	}
 	
-	public void createEntity(AppearDataForm appearDataForm, Imns imns) {
+	public void createEntity(AppearDataForm appearDataForm) {
 		Appeals entity = new Appeals();
+		ImnsService imnsService = new ImnsService();
 		
 		entity.setDate(appearDataForm.getDate());
 		entity.setDone(appearDataForm.getDone());
@@ -31,7 +32,7 @@ public class AppealsService {
 		entity.setUnit(appearDataForm.getUnit());
 		entity.setWhat(appearDataForm.getWhat());
 		entity.setWho(appearDataForm.getWho());
-		entity.setId_imns(imns);
+		entity.setId_imns(imnsService.findByID(appearDataForm.getImns()));
 		
 		if (appearDataForm.getId() != 0) {
 			entity.setId(appearDataForm.getId());
@@ -73,7 +74,7 @@ public class AppealsService {
 		query.setParameter("param", imns.getId());
 		List<Appeals> list = query.getResultList();
 		if (list == null) {
-			logger.info("findByLogin: null");
+			logger.info("findByImns: null");
 			return null;
 		}
  		return list;

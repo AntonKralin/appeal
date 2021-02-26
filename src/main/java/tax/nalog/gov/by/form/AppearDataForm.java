@@ -11,12 +11,13 @@ public class AppearDataForm {
 	private String 	done;
 	private String 	type;
 	private String 	unit;
+	private int		imns;
 	
 	public AppearDataForm() {
 		this.id = 0;
 	}
 
-	public AppearDataForm(int id, String date, String who, String what, String result, String done, String type, String unit) {
+	public AppearDataForm(int id, String date, String who, String what, String result, String done, String type, String unit, int imns) {
 		super();
 		this.id = id;
 		this.date = date;
@@ -26,6 +27,7 @@ public class AppearDataForm {
 		this.done = done;
 		this.type = type;
 		this.unit = unit;
+		this.imns = imns;
 	}
 	
 	public int getId() {
@@ -92,6 +94,14 @@ public class AppearDataForm {
 		this.unit = unit;
 	}
 	
+	public int getImns() {
+		return imns;
+	}
+
+	public void setImns(int imns) {
+		this.imns = imns;
+	}
+
 	public void setByAppeal(Appeals appeal) {
 		this.id = appeal.getId();
 		this.date = appeal.getDate();
@@ -101,6 +111,7 @@ public class AppearDataForm {
 		this.done = appeal.getDone();
 		this.type = appeal.getType();
 		this.unit = appeal.getUnit();
+		this.imns = appeal.getId_imns().getId();
 	} 
 	
 }

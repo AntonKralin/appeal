@@ -85,6 +85,9 @@
 					</form:select>
 				</p>
 				<p><form:input path="unit"  title="Управление, самостоятельный отдел, к компетенции которого относится рассматриваемый вопрос" placeholder="Управление, самостоятельный отдел"  style="width:1000px"/></p>
+				<p>
+					<form:select path="imns" items="${imnsList}" itemValue="id" itemLabel="number"></form:select>
+				</p>
 				<p><input type="submit" name="save" value="Сохранить" title="Сохранить пользователя"></p>
 			</form:form>
 		</div>
