@@ -3,6 +3,7 @@ package tax.nalog.gov.by.form;
 import tax.nalog.gov.by.entity.Appeals;
 
 public class AppearDataForm {
+	private int 	id;
 	private String 	date;
 	private String 	who;
 	private String 	what;
@@ -12,11 +13,12 @@ public class AppearDataForm {
 	private String 	unit;
 	
 	public AppearDataForm() {
-		
+		this.id = 0;
 	}
 
-	public AppearDataForm(String date, String who, String what, String result, String done, String type, String unit) {
+	public AppearDataForm(int id, String date, String who, String what, String result, String done, String type, String unit) {
 		super();
+		this.id = id;
 		this.date = date;
 		this.who = who;
 		this.what = what;
@@ -24,6 +26,14 @@ public class AppearDataForm {
 		this.done = done;
 		this.type = type;
 		this.unit = unit;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getDate() {
@@ -83,6 +93,7 @@ public class AppearDataForm {
 	}
 	
 	public void setByAppeal(Appeals appeal) {
+		this.id = appeal.getId();
 		this.date = appeal.getDate();
 		this.who = appeal.getWho();
 		this.what = appeal.getWhat();

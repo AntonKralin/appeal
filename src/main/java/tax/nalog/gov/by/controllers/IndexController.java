@@ -1,7 +1,8 @@
 package tax.nalog.gov.by.controllers;
 
 import java.util.List;
-
+import java.util.Map;
+import java.util.TreeMap;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,20 @@ import tax.nalog.gov.by.service.AppealsService;
 public class IndexController {
 	
 	private static final Logger logger = Logger.getLogger(IndexController.class);
-	 @Autowired 
-	 private HttpSession httpSession;
+	private Map<String, String> typeList;
+	@Autowired 
+	private HttpSession httpSession;
 	
 	public IndexController() {
 		logger.info("IndexController");
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
 		ctx.close();
+		
+		typeList = new TreeMap<String, String>();
+		typeList.put("7.1 Жалоба в район", "7.1 Жалоба в район");
+		typeList.put("7.2 Жалоба в область", "7.2 Жалоба в область");
+		typeList.put("7.3 Жалоба в МНС", "7.3 Жалоба в МНС");
+		typeList.put("7.4 Письмо МНС", "7.4 Письмо МНС");
 	}
 	
 	@GetMapping("/")
@@ -73,14 +81,12 @@ public class IndexController {
 	    modelView = new ModelAndView("main");
 	    modelView.addObject("appearDataForm", new AppearDataForm());
 	    modelView.addObject("appearIdForm", new AppearIdForm());
+	    modelView.addObject("typeList", typeList);
 	    Imns imns = admin.getImns();
 	    AppealsService appealsService = new AppealsService();
 	    List<Appeals> listAppeals = null;
-	    if (admin.getAccess() == 1) {
-	    	listAppeals = appealsService.findAll();
-	    }else {
-	    	listAppeals = appealsService.getListByImns(imns);
-	    }
+	    listAppeals = appealsService.getListByImns(imns);
+
 	    modelView.addObject("imnsname", imns.getShotName());
 	    modelView.addObject("appealsList", listAppeals);
 		
@@ -105,6 +111,7 @@ public class IndexController {
 		  }
 		  	  
 		  ModelAndView modelView = new ModelAndView("main");
+		  modelView.addObject("typeList", typeList);
 		  modelView.addObject("appearDataForm", appealDataForm);
 		  modelView.addObject("appearIdForm", new AppearIdForm());
 		  Imns imns = admin.getImns();
@@ -137,6 +144,7 @@ public class IndexController {
 		  ModelAndView modelView = new ModelAndView("main");
 		  modelView.addObject("appearDataForm", new AppearDataForm());
 		  modelView.addObject("appearIdForm", new AppearIdForm());
+		  modelView.addObject("typeList", typeList);
 		  Imns imns = admin.getImns();
 		  List<Appeals> listAppeals = null;
 		  if (admin.getAccess() == 1) {

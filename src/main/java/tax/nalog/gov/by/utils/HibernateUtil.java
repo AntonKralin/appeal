@@ -22,7 +22,7 @@ public class HibernateUtil {
 				//XMLSettings xml = ctx.getBean(XMLSettings.class);
 				//ctx.close();
 				String pass = "Ythy,thu2@";
-				String login = "admin";
+				String login = "appeal";
 
 				//String url = "jdbc:mysql://"+xml.getIpBD()+":"+xml.getPortBD()+"/hibernate_db?useSSL=false";
 				String url = "jdbc:mysql://localhost:3306/appeal";

@@ -33,7 +33,14 @@ public class AppealsService {
 		entity.setWho(appearDataForm.getWho());
 		entity.setId_imns(imns);
 		
-		dao.save(entity);
+		if (appearDataForm.getId() != 0) {
+			entity.setId(appearDataForm.getId());
+			dao.update(entity);
+		}else {
+			dao.save(entity);
+		}
+		
+		
 	}
 	
 	public void save(Appeals entity) {

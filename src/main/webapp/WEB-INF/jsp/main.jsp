@@ -73,12 +73,17 @@
 		<div id="appeal_dialog" style="display:none;" title="Жалоба">
 			<form:form method="POST" modelAttribute="appearDataForm" action="/appeal/main">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
+				<form:input path="id" style="display:none" />
 				<p><form:input path="date" title='Дата рассмотрения жалобы / Дата и номер письма МНС' placeholder="Дата рассмотрения жалобы / Дата и номер письма МНС" style="width:1000px"/></p>
 				<p><form:input path="who"  title='Наименование плательщика' placeholder="Наименование плательщика" style="width:1000px"/></p>
 				<p><form:input path="what"  title="Суть жалобы / Суть нарушений в письме МНС" placeholder="Суть жалобы / Суть нарушений в письме МНС"  style="width:1000px"/></p>
 				<p><form:input path="result"  title="Результат рассмотрения жалобы (Удовлетворена или нет)" placeholder="Результат рассмотрения жалобы"  style="width:1000px"/></p>
 				<p><form:input path="done"  title="Что сделано / Результат проделанной работы, направленной на устранение нарушений, отраженных в письме МНС" placeholder="Что сделано / Результат проделанной работы, направленной на устранение нарушений, отраженных в письме МНС"  style="width:1000px"/></p>
-				<p><form:input path="type"  title="Вид документа" placeholder="Вид документа"  style="width:1000px"/></p>
+				<p>
+					<form:select path="type">
+						<form:options items="${typeList}"/>
+					</form:select>
+				</p>
 				<p><form:input path="unit"  title="Управление, самостоятельный отдел, к компетенции которого относится рассматриваемый вопрос" placeholder="Управление, самостоятельный отдел"  style="width:1000px"/></p>
 				<p><input type="submit" name="save" value="Сохранить" title="Сохранить пользователя"></p>
 			</form:form>
