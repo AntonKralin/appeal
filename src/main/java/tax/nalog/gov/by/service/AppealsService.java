@@ -107,4 +107,30 @@ public class AppealsService {
  		return list;
 	}
 	
+	public List<Appeals> getListReport7(Admins admin, String type){
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
+		HibernateSession hSession = (HibernateSession)ctx.getBean("hibernateSession");
+		ctx.close();
+		Session session = hSession.getSession();
+		String hql;
+		Query<Appeals> query;
+		
+		if (admin.getAccess() == 1) {			
+			hql = "FROM Appeals where type != :param2 ORDER BY id";
+			query = session.createQuery(hql,Appeals.class);
+		}else {			
+			hql = "FROM Appeals where id_imns = :param AND type != :param2 ORDER BY id";
+			query = session.createQuery(hql,Appeals.class);
+			query.setParameter("param", admin.getImns().getId());
+		}
+		
+		query.setParameter("param2", type);
+		List<Appeals> list = query.getResultList();
+		if (list == null) {
+			logger.info("findByImnsType: null");
+			return null;
+		}
+ 		return list;
+	}
+	
 }

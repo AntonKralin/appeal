@@ -9,11 +9,11 @@
 		<meta name="description" content="Жалобы" />
 		<meta name="keywords" content="Жалобы" />
 		<link href="resources/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-		<link rel="stylesheet" href="resources/styles/main.css" type="text/css" />
+		<link rel="stylesheet" href="resources/styles/main.css?1" type="text/css" />
 		<link rel="stylesheet" href="resources/styles/jquery-ui.min.css" type="text/css" />
 		<link rel="stylesheet" href="resources/styles/jquery-ui.structure.min.css" type="text/css" />
 		<link rel="stylesheet" href="resources/styles/jquery-ui.theme.min.css" type="text/css" />
-		<script type="text/javascript" src="resources/js/functions.js?2"></script>
+		<script type="text/javascript" src="resources/js/functions.js?3"></script>
 		<script type="text/javascript" src="resources/js/jquery.js"></script>
 		<script type="text/javascript" src="resources/js/jquery1.js"></script>
 		<script type="text/javascript" src="resources/js/sort.js"></script>
@@ -68,6 +68,7 @@
 		<div id="bottom">
 			<button id="appeal" onclick="appeal_click();">Жалобы</button>
 			<button id="report74" onclick="report74_click();">Письма МНС</button>
+			<button id="report7" onclick="report7_click();">Отчет по жалобам</button>
 		</div>
 		
 <!-- ---------------------------------------------------------------------------------------------------------------------------------------------- -->		

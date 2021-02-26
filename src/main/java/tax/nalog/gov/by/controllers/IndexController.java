@@ -200,4 +200,21 @@ public class IndexController {
 		  modelView.addObject("reportsList74", appealList);
 		  return modelView; 
 	  }
+	  
+	  @GetMapping("report7")
+	  public ModelAndView report7() {
+		  logger.info("report7");
+		  
+		  Admins admin = (Admins)httpSession.getAttribute("admin");		  
+		  if (admin == null) {
+			  return null;
+		  }
+		  
+		  AppealsService appealsService = new AppealsService();
+		  List<Appeals> appealList = appealsService.getListReport7(admin, types[3]);
+		  
+		  ModelAndView modelView = new ModelAndView("7");
+		  modelView.addObject("reportsList7", appealList);
+		  return modelView; 
+	  }
 }
