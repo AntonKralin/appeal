@@ -72,7 +72,8 @@
 		</div>
 		
 <!-- ---------------------------------------------------------------------------------------------------------------------------------------------- -->		
-		<div id="appeal_dialog" style="display:none;" title="Жалоба">
+
+		<div id="appeal_dialog" style="display:none;"  title="Жалоба">
 			<form:form method="POST" modelAttribute="appearDataForm" action="/appeal/main">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 				<form:input path="id" style="display:none" />
@@ -99,11 +100,19 @@
 			<input type="submit" id="sub_hides" name="sub_hides">
 		</form:form>
 		
+		
 	</body>
 	<script type="text/javascript">
 		$( "#appeal_dialog" ).dialog({
 			autoOpen: false,
 			width: 1100
 		})
+	
 	</script>
+	
+	<c:if test="${display == true }">
+		<script type="text/javascript">
+		$( "#appeal_dialog" ).dialog( "open" );
+		</script>
+	</c:if>
 </html>

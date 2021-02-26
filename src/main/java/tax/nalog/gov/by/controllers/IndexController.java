@@ -96,6 +96,7 @@ public class IndexController {
 	    modelView.addObject("appearDataForm", new AppearDataForm());
 	    modelView.addObject("appearIdForm", new AppearIdForm());
 	    modelView.addObject("typeList", typeList);
+	    modelView.addObject("display", false);
 	    Imns imns = admin.getImns();
 	    AppealsService appealsService = new AppealsService();
 	    List<Appeals> listAppeals = null;
@@ -143,6 +144,7 @@ public class IndexController {
 		    listAppeals = appealsService.getListByImns(imns);
 		  modelView.addObject("imnsname", imns.getShotName());
 		  modelView.addObject("appealsList", listAppeals);
+		  modelView.addObject("display", true);
 		  
 		  return modelView; 
 	}
@@ -180,6 +182,7 @@ public class IndexController {
 	    	listAppeals = appealsService.getListByImns(imns);
 		  modelView.addObject("imnsname", imns.getShotName());
 		  modelView.addObject("appealsList", listAppeals);
+		  modelView.addObject("display", false);
 		  
 		  return modelView; 
 	  }
