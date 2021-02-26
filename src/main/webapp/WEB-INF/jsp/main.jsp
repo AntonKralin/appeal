@@ -5,15 +5,15 @@
 
 	<head>
 		<title>«Жалобы»</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="description" content="Жалобы" />
 		<meta name="keywords" content="Жалобы" />
-		<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+		<link href="resources/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 		<link rel="stylesheet" href="resources/styles/main.css" type="text/css" />
 		<link rel="stylesheet" href="resources/styles/jquery-ui.min.css" type="text/css" />
 		<link rel="stylesheet" href="resources/styles/jquery-ui.structure.min.css" type="text/css" />
 		<link rel="stylesheet" href="resources/styles/jquery-ui.theme.min.css" type="text/css" />
-		<script type="text/javascript" src="resources/js/functions.js?1"></script>
+		<script type="text/javascript" src="resources/js/functions.js?2"></script>
 		<script type="text/javascript" src="resources/js/jquery.js"></script>
 		<script type="text/javascript" src="resources/js/jquery1.js"></script>
 		<script type="text/javascript" src="resources/js/sort.js"></script>
@@ -67,6 +67,7 @@
 		
 		<div id="bottom">
 			<button id="appeal" onclick="appeal_click();">Жалобы</button>
+			<button id="report74" onclick="report74_click();">Письма МНС</button>
 		</div>
 		
 <!-- ---------------------------------------------------------------------------------------------------------------------------------------------- -->		

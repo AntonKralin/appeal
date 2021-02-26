@@ -4,7 +4,6 @@ public class AppearIdForm {
 	private int id_fild;
 	
 	public AppearIdForm() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public AppearIdForm(int id_fild) {

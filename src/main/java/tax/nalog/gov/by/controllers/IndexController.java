@@ -30,6 +30,8 @@ public class IndexController {
 	
 	private static final Logger logger = Logger.getLogger(IndexController.class);
 	private Map<String, String> typeList;
+	private String[] types = {"7.1 Жалоба в район", "7.2 Жалоба в область", "7.3 Жалоба в МНС", "7.4 Письмо МНС"};
+	
 	@Autowired 
 	private HttpSession httpSession;
 	
@@ -39,10 +41,10 @@ public class IndexController {
 		ctx.close();
 		
 		typeList = new TreeMap<String, String>();
-		typeList.put("7.1 Жалоба в район", "7.1 Жалоба в район");
-		typeList.put("7.2 Жалоба в область", "7.2 Жалоба в область");
-		typeList.put("7.3 Жалоба в МНС", "7.3 Жалоба в МНС");
-		typeList.put("7.4 Письмо МНС", "7.4 Письмо МНС");
+		typeList.put(types[0], types[0]);
+		typeList.put(types[1], types[1]);
+		typeList.put(types[2], types[2]);
+		typeList.put(types[3], types[3]);
 	}
 	
 	@GetMapping("/")
@@ -182,5 +184,20 @@ public class IndexController {
 		  return modelView; 
 	  }
 	 
-	
+	  @GetMapping("report74")
+	  public ModelAndView report74() {
+		  logger.info("report74");
+		  
+		  Admins admin = (Admins)httpSession.getAttribute("admin");		  
+		  if (admin == null) {
+			  return null;
+		  }
+		  
+		  AppealsService appealsService = new AppealsService();
+		  List<Appeals> appealList = appealsService.getListReport74(admin, types[3]);
+		  
+		  ModelAndView modelView = new ModelAndView("74");
+		  modelView.addObject("reportsList74", appealList);
+		  return modelView; 
+	  }
 }

@@ -4,6 +4,10 @@ function appeal_click(){
 	$( "#appeal_dialog" ).dialog( "open" );
 }
 
+function report74_click(){
+	window.open("report74","_blank");
+}
+
 function edit_fild(val){
 	document.getElementById('id_fild').value = val;
 	document.getElementById('hides').submit();

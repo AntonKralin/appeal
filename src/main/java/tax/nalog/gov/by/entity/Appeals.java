@@ -3,6 +3,7 @@
  */
 package tax.nalog.gov.by.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -26,8 +27,10 @@ public class Appeals {
 	private int 	id;
 	private String 	date;
 	private String 	who;
+	@Column(name="what", columnDefinition="TEXT")
 	private String 	what;
 	private String 	result;
+	@Column(name="done", columnDefinition="TEXT")
 	private String 	done;
 	private String 	type;
 	private String 	unit;

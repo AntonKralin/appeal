@@ -8,7 +8,6 @@ import org.hibernate.query.Query;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import tax.nalog.gov.by.dao.AdminsDAO;
 import tax.nalog.gov.by.entity.Admins;
-import tax.nalog.gov.by.form.PasswordForm;
 import tax.nalog.gov.by.utils.HibernateSession;
 import tax.nalog.gov.by.utils.SpringConfig;
 

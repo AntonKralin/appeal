@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="description" content="Жалобы" />
 	<meta name="keywords" content="Жалобы" />
-	<link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+	<link href="resources/images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 	<link rel="stylesheet" href="resources/styles/main.css" type="text/css" />
 	<link rel="stylesheet" href="resources/styles/jquery-ui.min.css" type="text/css" />
 	<link rel="stylesheet" href="resources/styles/jquery-ui.structure.min.css" type="text/css" />
