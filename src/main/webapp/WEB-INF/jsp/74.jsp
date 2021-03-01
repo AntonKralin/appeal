@@ -35,7 +35,7 @@
 			<tbody>		
 					<c:forEach var="appeals" items="${reportsList74}">
 						<tr>
-							<td>${appeals.getDate()}</td>
+							<td>${appeals.getDateMessage()}</td>
 							<td>${appeals.getWhat()}</td>
 							<td>${appeals.getId_imns().getNumber()}</td>
 							<td>${appeals.getDone()}</td>

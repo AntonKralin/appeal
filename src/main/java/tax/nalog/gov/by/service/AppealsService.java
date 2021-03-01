@@ -33,6 +33,7 @@ public class AppealsService {
 		entity.setUnit(appearDataForm.getUnit());
 		entity.setWhat(appearDataForm.getWhat());
 		entity.setWho(appearDataForm.getWho());
+		entity.setMessage(appearDataForm.getMessage());
 		entity.setId_imns(imnsService.findByID(appearDataForm.getImns()));
 		
 		if (appearDataForm.getId() != 0) {

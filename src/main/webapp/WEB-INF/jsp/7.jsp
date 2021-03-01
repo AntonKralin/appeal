@@ -40,7 +40,7 @@
 					<c:forEach var="appeals" items="${reportsList7}">
 						<tr>
 							<td>${appeals.getId()}</td>
-								<td>${appeals.getDate()}</td>
+								<td>${appeals.getDateMessage()}</td>
 								<td>${appeals.getType()}</td>
 								<td>${appeals.getWho()}</td>
 								<td>${appeals.getWhat()}</td>

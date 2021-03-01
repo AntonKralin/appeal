@@ -50,7 +50,7 @@
 						<c:forEach var="appeals" items="${appealsList}">
 							<tr>
 								<td>${appeals.getId()}</td>
-								<td>${appeals.getDate()}</td>
+								<td>${appeals.getDateMessage()}</td>
 								<td>${appeals.getWho()}</td>
 								<td>${appeals.getWhat()}</td>
 								<td>${appeals.getResult()}</td>
@@ -77,7 +77,8 @@
 			<form:form method="POST" modelAttribute="appearDataForm" action="/appeal/main">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 				<form:input path="id" style="display:none" />
-				<p><form:input path="date" title='Дата рассмотрения жалобы / Дата и номер письма МНС' placeholder="Дата рассмотрения жалобы / Дата и номер письма МНС" style="width:1000px"/></p>
+				<p><form:input path="date" id="date" readonly="true" onclick='choose_date(this);' title='Дата рассмотрения жалобы' placeholder="Дата рассмотрения жалобы" style="width:1000px"/></p>
+				<p><form:input path="message" autofocus="true" title='Дата и номер письма' placeholder='Дата и номер письма' style='width:1000px' /></p>
 				<p><form:input path="who"  title='Наименование плательщика' placeholder="Наименование плательщика" style="width:1000px"/></p>
 				<p><form:input path="what"  title="Суть жалобы / Суть нарушений в письме МНС" placeholder="Суть жалобы / Суть нарушений в письме МНС"  style="width:1000px"/></p>
 				<p><form:input path="result"  title="Результат рассмотрения жалобы (Удовлетворена или нет)" placeholder="Результат рассмотрения жалобы"  style="width:1000px"/></p>
@@ -108,6 +109,16 @@
 			width: 1100
 		})
 	
+		function choose_date(elem){
+			$(elem).datepicker({
+				changeYear: true,
+				dateFormat: "yy-mm-dd",
+				monthNames: ['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'],
+				dayNamesMin: ['Вс','Пн','Вт','Ср','Чт','Пт','Сб']
+			});
+			$(elem).datepicker("show");
+		}
+		
 	</script>
 	
 	<c:if test="${display == true }">

@@ -3,6 +3,9 @@
  */
 package tax.nalog.gov.by.entity;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
 
 /**
  * @author AntonKralin
@@ -25,7 +30,10 @@ public class Appeals {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int 	id;
-	private String 	date;
+	@Column
+	@Type(type="date")
+	private Date 	date;
+	private String message;
 	private String 	who;
 	@Column(name="what", columnDefinition="TEXT")
 	private String 	what;
@@ -44,8 +52,8 @@ public class Appeals {
 		
 	}
 
-	public Appeals(int id, String date, String who, String what, String result, String done, String type,
-			String unit, Imns appeal_imns) {
+	public Appeals(int id, Date date, String who, String what, String result, String done, String type,
+			String unit, Imns appeal_imns, String message) {
 		super();
 		this.id = id;
 		this.date = date;
@@ -56,6 +64,15 @@ public class Appeals {
 		this.type = type;
 		this.unit = unit;
 		this.appeal_imns = appeal_imns;
+		this.message = message;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
 	public int getId() {
@@ -66,12 +83,19 @@ public class Appeals {
 		this.id = id;
 	}
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
 	public void setDate(String date) {
-		this.date = date;
+		try {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			this.date = dateFormat.parse(date);
+		}catch (Exception e) {
+			e.printStackTrace();
+			this.date = null;
+			return;
+		}
 	}
 
 	public String getWho() {
@@ -128,6 +152,18 @@ public class Appeals {
 
 	public void setId_imns(Imns appeal_imns) {
 		this.appeal_imns = appeal_imns;
+	}
+	
+	public String getDateMessage() {
+		if ( this.date == null ) {
+			return message;
+		}else {
+			if ( (this.message==null) || (this.message.equals("")) ) {
+				return this.date.toString();
+			}else {
+				return this.date.toString() +" / "+this.message;
+			}
+		}
 	}
 	
 }

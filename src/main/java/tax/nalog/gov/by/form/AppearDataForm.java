@@ -5,6 +5,7 @@ import tax.nalog.gov.by.entity.Appeals;
 public class AppearDataForm {
 	private int 	id;
 	private String 	date;
+	private String	message;
 	private String 	who;
 	private String 	what;
 	private String 	result;
@@ -17,7 +18,7 @@ public class AppearDataForm {
 		this.id = 0;
 	}
 
-	public AppearDataForm(int id, String date, String who, String what, String result, String done, String type, String unit, int imns) {
+	public AppearDataForm(int id, String date, String who, String what, String result, String done, String type, String unit, int imns, String message) {
 		super();
 		this.id = id;
 		this.date = date;
@@ -28,6 +29,7 @@ public class AppearDataForm {
 		this.type = type;
 		this.unit = unit;
 		this.imns = imns;
+		this.message = message;
 	}
 	
 	public int getId() {
@@ -102,9 +104,22 @@ public class AppearDataForm {
 		this.imns = imns;
 	}
 
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
 	public void setByAppeal(Appeals appeal) {
 		this.id = appeal.getId();
-		this.date = appeal.getDate();
+		if (appeal.getDate() != null) {
+			this.date = appeal.getDate().toString();
+		}else {
+			this.date = "";
+		}
+		this.message = appeal.getMessage();
 		this.who = appeal.getWho();
 		this.what = appeal.getWhat();
 		this.result = appeal.getResult();
