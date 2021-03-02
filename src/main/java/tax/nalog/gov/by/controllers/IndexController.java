@@ -13,12 +13,14 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import tax.nalog.gov.by.utils.SpringConfig;
 import tax.nalog.gov.by.entity.Admins;
 import tax.nalog.gov.by.entity.Appeals;
 import tax.nalog.gov.by.entity.Imns;
 import tax.nalog.gov.by.form.PasswordForm;
+import tax.nalog.gov.by.form.ReportDataForm;
 import tax.nalog.gov.by.form.AppearDataForm;
 import tax.nalog.gov.by.form.AppearIdForm;
 import tax.nalog.gov.by.service.AdminsService;
@@ -95,6 +97,7 @@ public class IndexController {
 	    
 	    modelView.addObject("appearDataForm", new AppearDataForm());
 	    modelView.addObject("appearIdForm", new AppearIdForm());
+	    modelView.addObject("reportDataForm", new ReportDataForm());
 	    modelView.addObject("typeList", typeList);
 	    modelView.addObject("display", false);
 	    Imns imns = admin.getImns();
@@ -139,6 +142,7 @@ public class IndexController {
 		  
 		  modelView.addObject("appearDataForm", appealDataForm);
 		  modelView.addObject("appearIdForm", new AppearIdForm());
+		  modelView.addObject("reportDataForm", new ReportDataForm());
 		  Imns imns = admin.getImns();
 		  List<Appeals> listAppeals = null;
 		    listAppeals = appealsService.getListByImns(imns);
@@ -176,6 +180,7 @@ public class IndexController {
 		  
 		  modelView.addObject("appearDataForm", new AppearDataForm());
 		  modelView.addObject("appearIdForm", new AppearIdForm());
+		  modelView.addObject("reportDataForm", new ReportDataForm());
 		  modelView.addObject("typeList", typeList);
 		  Imns imns = admin.getImns();
 		  List<Appeals> listAppeals = null;
@@ -186,38 +191,38 @@ public class IndexController {
 		  
 		  return modelView; 
 	  }
-	 
-	  @GetMapping("report74")
-	  public ModelAndView report74() {
-		  logger.info("report74");
-		  
-		  Admins admin = (Admins)httpSession.getAttribute("admin");		  
-		  if (admin == null) {
-			  return null;
-		  }
-		  
-		  AppealsService appealsService = new AppealsService();
-		  List<Appeals> appealList = appealsService.getListReport74(admin, types[3]);
-		  
-		  ModelAndView modelView = new ModelAndView("74");
-		  modelView.addObject("reportsList74", appealList);
-		  return modelView; 
-	  }
 	  
-	  @GetMapping("report7")
-	  public ModelAndView report7() {
-		  logger.info("report7");
+	  @GetMapping("report")
+	  public ModelAndView report( @RequestParam(name = "button") String name, 
+			  @ModelAttribute("reportDataForm") ReportDataForm reportDataForm ) {
+		  logger.info(name);
 		  
 		  Admins admin = (Admins)httpSession.getAttribute("admin");		  
 		  if (admin == null) {
 			  return null;
 		  }
 		  
+		  ModelAndView modelView = null;
 		  AppealsService appealsService = new AppealsService();
-		  List<Appeals> appealList = appealsService.getListReport7(admin, types[3]);
+		  List<Appeals> appealList = null;
 		  
-		  ModelAndView modelView = new ModelAndView("7");
-		  modelView.addObject("reportsList7", appealList);
+		  switch (name) {
+				case "Отчет по жалобам":					
+					appealList = appealsService.getListReport7(admin, types[3], reportDataForm.getFrom(), reportDataForm.getTo());
+				  
+					modelView = new ModelAndView("7");
+					modelView.addObject("reportsList7", appealList);
+					break;
+					
+				case "Письма МНС":
+					appealList = appealsService.getListReport74(admin, types[3], reportDataForm.getFrom(), reportDataForm.getTo());
+					  
+					modelView = new ModelAndView("74");
+					modelView.addObject("reportsList74", appealList);
+					break;
+		  }
+		  
+
 		  return modelView; 
 	  }
 }

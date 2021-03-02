@@ -1,15 +1,9 @@
 function appeal_click(){
-	//var dialog = document.querySelector('#user_dialog');
-	//dialog.showModal();
 	$( "#appeal_dialog" ).dialog( "open" );
 }
 
-function report74_click(){
-	window.open("report74","_blank");
-}
-
-function report7_click(){
-	window.open("report7","_blank");
+function report_click(){
+	$( "#report_dialog" ).dialog( "open" );
 }
 
 function edit_fild(val){

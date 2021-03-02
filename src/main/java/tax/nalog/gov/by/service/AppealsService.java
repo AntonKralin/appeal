@@ -1,5 +1,7 @@
 package tax.nalog.gov.by.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -82,50 +84,78 @@ public class AppealsService {
  		return list;
 	}
 	
-	public List<Appeals> getListReport74(Admins admin, String type){
+	public List<Appeals> getListReport74(Admins admin, String type, String from, String to){
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
 		HibernateSession hSession = (HibernateSession)ctx.getBean("hibernateSession");
 		ctx.close();
 		Session session = hSession.getSession();
 		String hql;
 		Query<Appeals> query;
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		
 		if (admin.getAccess() == 1) {			
-			hql = "FROM Appeals where type= :param2 ORDER BY id";
+			hql = "FROM Appeals where type= :param2 AND (date BETWEEN :param3 AND :param4) ORDER BY id";
 			query = session.createQuery(hql,Appeals.class);
 		}else {			
-			hql = "FROM Appeals where id_imns = :param AND type= :param2 ORDER BY id";
+			hql = "FROM Appeals where id_imns = :param AND type= :param2 AND (date BETWEEN :param3 AND :param4) ORDER BY id";
 			query = session.createQuery(hql,Appeals.class);
 			query.setParameter("param", admin.getImns().getId());
+			
+		}
+		
+		Date param3 = null;
+		Date param4 = null;
+		try {
+			param3 = dateFormat.parse(from);
+			param4 = dateFormat.parse(to);
+		}catch (Exception e) {
+			e.printStackTrace();
+			logger.error(e);
 		}
 		
 		query.setParameter("param2", type);
+		query.setParameter("param3", param3);
+		query.setParameter("param4", param4);
 		List<Appeals> list = query.getResultList();
 		if (list == null) {
 			logger.info("findByImnsType: null");
 			return null;
 		}
  		return list;
+ 		
 	}
 	
-	public List<Appeals> getListReport7(Admins admin, String type){
+	public List<Appeals> getListReport7(Admins admin, String type, String from, String to){
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(SpringConfig.class);
 		HibernateSession hSession = (HibernateSession)ctx.getBean("hibernateSession");
 		ctx.close();
 		Session session = hSession.getSession();
 		String hql;
 		Query<Appeals> query;
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		
 		if (admin.getAccess() == 1) {			
-			hql = "FROM Appeals where type != :param2 ORDER BY id";
+			hql = "FROM Appeals where type != :param2 AND (date BETWEEN :param3 AND :param4)  ORDER BY id";
 			query = session.createQuery(hql,Appeals.class);
 		}else {			
-			hql = "FROM Appeals where id_imns = :param AND type != :param2 ORDER BY id";
+			hql = "FROM Appeals where id_imns = :param AND type != :param2 AND (date BETWEEN :param3 AND :param4)  ORDER BY id";
 			query = session.createQuery(hql,Appeals.class);
 			query.setParameter("param", admin.getImns().getId());
 		}
 		
+		Date param3 = null;
+		Date param4 = null;
+		try {
+			param3 = dateFormat.parse(from);
+			param4 = dateFormat.parse(to);
+		}catch (Exception e) {
+			e.printStackTrace();
+			logger.error(e);
+		}
+		
 		query.setParameter("param2", type);
+		query.setParameter("param3", param3);
+		query.setParameter("param4", param4);
 		List<Appeals> list = query.getResultList();
 		if (list == null) {
 			logger.info("findByImnsType: null");

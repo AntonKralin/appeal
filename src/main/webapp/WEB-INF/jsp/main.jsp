@@ -13,7 +13,7 @@
 		<link rel="stylesheet" href="resources/styles/jquery-ui.min.css" type="text/css" />
 		<link rel="stylesheet" href="resources/styles/jquery-ui.structure.min.css" type="text/css" />
 		<link rel="stylesheet" href="resources/styles/jquery-ui.theme.min.css" type="text/css" />
-		<script type="text/javascript" src="resources/js/functions.js?3"></script>
+		<script type="text/javascript" src="resources/js/functions.js?4"></script>
 		<script type="text/javascript" src="resources/js/jquery.js"></script>
 		<script type="text/javascript" src="resources/js/jquery1.js"></script>
 		<script type="text/javascript" src="resources/js/sort.js"></script>
@@ -67,8 +67,7 @@
 		
 		<div id="bottom">
 			<button id="appeal" onclick="appeal_click();">Жалобы</button>
-			<button id="report74" onclick="report74_click();">Письма МНС</button>
-			<button id="report7" onclick="report7_click();">Отчет по жалобам</button>
+			<button id="reportButton" onclick="report_click();">Отчеты</button>
 		</div>
 		
 <!-- ---------------------------------------------------------------------------------------------------------------------------------------------- -->		
@@ -96,6 +95,22 @@
 			</form:form>
 		</div>
 		
+		<div id="report_dialog" style="display:none;" title="Отчеты">
+			<form:form method="GET" modelAttribute="reportDataForm" action="/appeal/report">
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				<p><form:input path="from" id="from" readonly="true" onclick='choose_date(this);' title='С' placeholder="С" style="width:500px"/></p>
+				<p><form:input path="to" id="to" readonly="true" onclick='choose_date(this);' title='По' placeholder="По" style="width:500px"/></p>
+				<p>
+					<input type="submit" name="button" id="7" value="Отчет по жалобам"/>
+					<input type="submit" name="button" id="74" value="Письма МНС"/>
+				</p>
+				<p>
+					<input type="submit" name="button" id="exel7" value="Exel отчет по жалобам"/>
+					<input type="submit" name="button" id="exel74" value="Exel Письма МНС"/>
+				</p>
+			</form:form>
+		</div>
+		
 		<form:form id="hides" method="GET" modelAttribute="appearIdForm" style="display:none" action="/appeal/main">
 			<form:input path="id_fild" id="id_fild" name="id_fild" />
 			<input type="submit" id="sub_hides" name="sub_hides">
@@ -107,6 +122,11 @@
 		$( "#appeal_dialog" ).dialog({
 			autoOpen: false,
 			width: 1100
+		})
+		
+		$( "#report_dialog" ).dialog({
+			autoOpen: false,
+			width: 600
 		})
 	
 		function choose_date(elem){
