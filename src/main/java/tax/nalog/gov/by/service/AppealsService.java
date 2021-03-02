@@ -106,7 +106,11 @@ public class AppealsService {
 		Date param3 = null;
 		Date param4 = null;
 		try {
-			param3 = dateFormat.parse(from);
+			if (from.equals("")) {
+				param3 = dateFormat.parse("2000-01-01");
+			}else {
+				param3 = dateFormat.parse(from);
+			}
 			param4 = dateFormat.parse(to);
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -146,7 +150,11 @@ public class AppealsService {
 		Date param3 = null;
 		Date param4 = null;
 		try {
-			param3 = dateFormat.parse(from);
+			if (from.equals("")) {
+				param3 = dateFormat.parse("2000-01-01");
+			}else {
+				param3 = dateFormat.parse(from);
+			}
 			param4 = dateFormat.parse(to);
 		}catch (Exception e) {
 			e.printStackTrace();

@@ -16,7 +16,7 @@ public class ExelDocument {
 	
 	public String createReport7(List<Appeals> appealList, Imns imns) {
 		Integer number = imns.getNumber();
-		String pathToExcel = number.toString()+".xlsx";
+		String pathToExcel = "/tmp/"+number.toString()+".csv";
 		File file = new File(pathToExcel);
 		pathToExcel = file.getAbsolutePath();
 		
@@ -78,7 +78,7 @@ public class ExelDocument {
 
 	public String createReport74(List<Appeals> appealList, Imns imns) {
 		Integer number = imns.getNumber();
-		String pathToExcel = number.toString()+".xlsx";
+		String pathToExcel = "/tmp/"+number.toString()+".csv";
 		File file = new File(pathToExcel);
 		pathToExcel = file.getAbsolutePath();
 		
