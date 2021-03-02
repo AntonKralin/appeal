@@ -1,20 +1,31 @@
 package tax.nalog.gov.by.controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import tax.nalog.gov.by.utils.ExelDocument;
 import tax.nalog.gov.by.utils.SpringConfig;
 import tax.nalog.gov.by.entity.Admins;
 import tax.nalog.gov.by.entity.Appeals;
@@ -193,7 +204,8 @@ public class IndexController {
 	  }
 	  
 	  @GetMapping("report")
-	  public ModelAndView report( @RequestParam(name = "button") String name, 
+	  public ModelAndView report( HttpServletResponse response, 
+			  @RequestParam(name = "button") String name, 
 			  @ModelAttribute("reportDataForm") ReportDataForm reportDataForm ) {
 		  logger.info(name);
 		  
@@ -205,6 +217,7 @@ public class IndexController {
 		  ModelAndView modelView = null;
 		  AppealsService appealsService = new AppealsService();
 		  List<Appeals> appealList = null;
+		  ExelDocument exelDocument = new ExelDocument();
 		  
 		  switch (name) {
 				case "Отчет по жалобам":					
@@ -219,6 +232,60 @@ public class IndexController {
 					  
 					modelView = new ModelAndView("74");
 					modelView.addObject("reportsList74", appealList);
+					break;
+					
+				case "Exel отчет по жалобам":
+					appealList = appealsService.getListReport7(admin, types[3], reportDataForm.getFrom(), reportDataForm.getTo());
+					String path = exelDocument.createReport7(appealList, admin.getImns());
+					try {
+						File downloadFile = new File(path);
+						FileInputStream inputStream = new FileInputStream(downloadFile);
+						response.setContentType("application/octet-stream");
+						response.setContentLength((int) downloadFile.length());
+						String headerKey = "Content-Disposition";
+						String headerValue = String.format("attachment; filename=\"%s\"",
+				                downloadFile.getName());
+				        response.setHeader(headerKey, headerValue);
+				        OutputStream outStream = response.getOutputStream();
+				        byte[] buffer = new byte[4096];
+				        int bytesRead = -1;
+				        while ((bytesRead = inputStream.read(buffer)) != -1) {
+				            outStream.write(buffer, 0, bytesRead);
+				        }
+				 
+				        inputStream.close();
+				        outStream.close();
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+					break;
+					
+				case "Exel Письма МНС":
+					appealList = appealsService.getListReport74(admin, types[3], reportDataForm.getFrom(), reportDataForm.getTo());
+					
+					String path2 = exelDocument.createReport74(appealList, admin.getImns());
+					try {
+						File downloadFile = new File(path2);
+						FileInputStream inputStream = new FileInputStream(downloadFile);
+						response.setContentType("application/octet-stream");
+						response.setContentLength((int) downloadFile.length());
+						String headerKey = "Content-Disposition";
+						String headerValue = String.format("attachment; filename=\"%s\"",
+				                downloadFile.getName());
+				        response.setHeader(headerKey, headerValue);
+				        OutputStream outStream = response.getOutputStream();
+				        byte[] buffer = new byte[4096];
+				        int bytesRead = -1;
+				        while ((bytesRead = inputStream.read(buffer)) != -1) {
+				            outStream.write(buffer, 0, bytesRead);
+				        }
+				 
+				        inputStream.close();
+				        outStream.close();
+					}catch (Exception e) {
+						e.printStackTrace();
+					}
+					
 					break;
 		  }
 		  
