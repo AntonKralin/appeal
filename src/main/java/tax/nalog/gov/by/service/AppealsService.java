@@ -1,6 +1,7 @@
 package tax.nalog.gov.by.service;
 
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +25,7 @@ public class AppealsService {
 		dao = new AppealsDAO();
 	}
 	
-	public void createEntity(AppearDataForm appearDataForm) {
+	public void createEntity(AppearDataForm appearDataForm, Imns imns) {
 		Appeals entity = new Appeals();
 		ImnsService imnsService = new ImnsService();
 		
@@ -36,7 +37,8 @@ public class AppealsService {
 		entity.setWhat(appearDataForm.getWhat());
 		entity.setWho(appearDataForm.getWho());
 		entity.setMessage(appearDataForm.getMessage());
-		entity.setId_imns(imnsService.findByID(appearDataForm.getImns()));
+		entity.setImns(appearDataForm.getImns2());
+		entity.setId_imns(imnsService.findByID( imns.getId() ));
 		
 		if (appearDataForm.getId() != 0) {
 			entity.setId(appearDataForm.getId());
@@ -73,14 +75,15 @@ public class AppealsService {
 		HibernateSession hSession = (HibernateSession)ctx.getBean("hibernateSession");
 		ctx.close();
 		Session session = hSession.getSession();
-		String hql = "FROM Appeals where id_imns = :param ORDER BY id";
-		Query<Appeals> query = session.createQuery(hql,Appeals.class);
+		String hql = "FROM Appeals WHERE id_imns = :param ORDER BY id DESC";
+		Query<Appeals> query = session.createQuery(hql,Appeals.class).setMaxResults(100);
 		query.setParameter("param", imns.getId());
 		List<Appeals> list = query.getResultList();
 		if (list == null) {
 			logger.info("findByImns: null");
 			return null;
 		}
+		Collections.reverse(list);
  		return list;
 	}
 	

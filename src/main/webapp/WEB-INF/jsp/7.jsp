@@ -47,7 +47,7 @@
 								<td>${appeals.getResult()}</td>
 								<td>${appeals.getDone()}</td>							
 								<td>${appeals.getUnit()}</td>
-								<td>${appeals.getId_imns().getNumber()}</td>
+								<td>${appeals.getImns()}</td>
 						</tr>
 					</c:forEach>	
 			</tbody>

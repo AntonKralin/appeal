@@ -42,6 +42,7 @@ public class Appeals {
 	private String 	done;
 	private String 	type;
 	private String 	unit;
+	private String	imns;
 	
 	
 	@ManyToOne (fetch = FetchType.LAZY)
@@ -53,7 +54,7 @@ public class Appeals {
 	}
 
 	public Appeals(int id, Date date, String who, String what, String result, String done, String type,
-			String unit, Imns appeal_imns, String message) {
+			String unit, Imns appeal_imns, String message, String imns) {
 		super();
 		this.id = id;
 		this.date = date;
@@ -65,6 +66,7 @@ public class Appeals {
 		this.unit = unit;
 		this.appeal_imns = appeal_imns;
 		this.message = message;
+		this.imns = imns;
 	}
 
 	public String getMessage() {
@@ -154,6 +156,18 @@ public class Appeals {
 		this.appeal_imns = appeal_imns;
 	}
 	
+	public String getImns() {
+		return imns;
+	}
+
+	public void setImns(String imns) {
+		this.imns = imns;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
 	public String getDateMessage() {
 		if ( this.date == null ) {
 			return message;

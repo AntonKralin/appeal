@@ -3,14 +3,10 @@ package tax.nalog.gov.by.controllers;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.OutputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
@@ -18,13 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import tax.nalog.gov.by.utils.ExelDocument;
 import tax.nalog.gov.by.utils.SpringConfig;
 import tax.nalog.gov.by.entity.Admins;
@@ -142,14 +136,14 @@ public class IndexController {
 		  ModelAndView modelView = new ModelAndView("main");
 		  modelView.addObject("typeList", typeList);
 		  
-		    ImnsService imnsService = new ImnsService();
-		    List<Imns> imnsList = new ArrayList<Imns>();
-		    if (admin.getAccess() == 1) {
-		    	imnsList = imnsService.findAll();
-		    }else {
-		    	imnsList.add( admin.getImns() );
-		    }
-		    modelView.addObject("imnsList", imnsList);
+		  ImnsService imnsService = new ImnsService();
+		  List<Imns> imnsList = new ArrayList<Imns>();
+		  if (admin.getAccess() == 1) {
+		   	imnsList = imnsService.findAll();
+		  }else {
+		  	imnsList.add( admin.getImns() );
+		  }
+		  modelView.addObject("imnsList", imnsList);
 		  
 		  modelView.addObject("appearDataForm", appealDataForm);
 		  modelView.addObject("appearIdForm", new AppearIdForm());
@@ -176,7 +170,7 @@ public class IndexController {
 		  }
 		  
 		  AppealsService appealsService = new AppealsService();
-		  appealsService.createEntity(appearDataForm);
+		  appealsService.createEntity(appearDataForm, admin.getImns());
 		  
 		  ModelAndView modelView = new ModelAndView("main");
 		  
@@ -234,7 +228,7 @@ public class IndexController {
 					modelView.addObject("reportsList74", appealList);
 					break;
 					
-				case "Exel отчет по жалобам":
+				case "Excel отчет по жалобам":
 					appealList = appealsService.getListReport7(admin, types[3], reportDataForm.getFrom(), reportDataForm.getTo());
 					String path = exelDocument.createReport7(appealList, admin.getImns());
 					try {
@@ -260,7 +254,7 @@ public class IndexController {
 					}
 					break;
 					
-				case "Exel Письма МНС":
+				case "Excel Письма МНС":
 					appealList = appealsService.getListReport74(admin, types[3], reportDataForm.getFrom(), reportDataForm.getTo());
 					
 					String path2 = exelDocument.createReport74(appealList, admin.getImns());

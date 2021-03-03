@@ -13,11 +13,12 @@
 		<link rel="stylesheet" href="resources/styles/jquery-ui.min.css" type="text/css" />
 		<link rel="stylesheet" href="resources/styles/jquery-ui.structure.min.css" type="text/css" />
 		<link rel="stylesheet" href="resources/styles/jquery-ui.theme.min.css" type="text/css" />
+		<link rel="stylesheet" href="resources/styles/selectize.default.css?1" type="text/css" />
 		<script type="text/javascript" src="resources/js/functions.js?4"></script>
 		<script type="text/javascript" src="resources/js/jquery.js"></script>
-		<script type="text/javascript" src="resources/js/jquery1.js"></script>
 		<script type="text/javascript" src="resources/js/sort.js"></script>
 		<script type="text/javascript" src="resources/js/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="resources/js/selectize.min.js?3"></script>
 	
 	</head>
 
@@ -57,7 +58,7 @@
 								<td>${appeals.getDone()}</td>
 								<td>${appeals.getType()}</td>
 								<td>${appeals.getUnit()}</td>
-								<td>${appeals.getId_imns().getNumber()}</td>
+								<td>${appeals.getImns()}</td>
 								<td><input class="button" type="button" onclick="edit_fild(${appeals.getId()})" value="📒" title="изменить доступ"></td>
 							</tr>
 						</c:forEach>	
@@ -76,6 +77,9 @@
 			<form:form method="POST" modelAttribute="appearDataForm" action="/appeal/main">
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> 
 				<form:input path="id" style="display:none" />
+				<p>
+					<label>Выберите ИМНС</label><form:select path="imns" id="imns" multiple="true" items="${imnsList}" itemValue="number" itemLabel="number"></form:select>
+				</p>
 				<p><form:input path="date" id="date" readonly="true" onclick='choose_date(this);' title='Дата рассмотрения жалобы' placeholder="Дата рассмотрения жалобы" style="width:1000px"/></p>
 				<p><form:input path="message" autofocus="true" title='Дата и номер письма' placeholder='Дата и номер письма' style='width:1000px' /></p>
 				<p><form:input path="who"  title='Наименование плательщика' placeholder="Наименование плательщика" style="width:1000px"/></p>
@@ -87,10 +91,7 @@
 						<form:options items="${typeList}"/>
 					</form:select>
 				</p>
-				<p><form:input path="unit"  title="Управление, самостоятельный отдел, к компетенции которого относится рассматриваемый вопрос" placeholder="Управление, самостоятельный отдел"  style="width:1000px"/></p>
-				<p>
-					<form:select path="imns" items="${imnsList}" itemValue="id" itemLabel="number"></form:select>
-				</p>
+				<p><form:input path="unit"  title="Управление, самостоятельный отдел, к компетенции которого относится рассматриваемый вопрос" placeholder="Управление, самостоятельный отдел"  style="width:1000px"/></p>			
 				<p><input type="submit" name="save" value="Сохранить" title="Сохранить пользователя"></p>
 			</form:form>
 		</div>
@@ -105,8 +106,8 @@
 					<input type="submit" name="button" id="74" value="Письма МНС"/>
 				</p>
 				<p>
-					<input type="submit" name="button" id="exel7" value="Exel отчет по жалобам"/>
-					<input type="submit" name="button" id="exel74" value="Exel Письма МНС"/>
+					<input type="submit" name="button" id="exel7" value="Excel отчет по жалобам"/>
+					<input type="submit" name="button" id="exel74" value="Excel Письма МНС"/>
 				</p>
 			</form:form>
 		</div>
@@ -119,6 +120,8 @@
 		
 	</body>
 	<script type="text/javascript">
+		$("#imns").selectize();
+	
 		$( "#appeal_dialog" ).dialog({
 			autoOpen: false,
 			width: 1100

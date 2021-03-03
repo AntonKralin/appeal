@@ -60,7 +60,7 @@ public class ExelDocument {
 		    	cell.setCellValue(new HSSFRichTextString(appeal.getUnit()));
 		    	
 		    	cell = row.createCell(8); 
-		    	cell.setCellValue(new HSSFRichTextString(Integer.toString(appeal.getId_imns().getNumber())));
+		    	cell.setCellValue(new HSSFRichTextString( appeal.getImns() ));
 		    	
 		    	count++;
 			}
@@ -104,7 +104,7 @@ public class ExelDocument {
 		    	cell.setCellValue(new HSSFRichTextString( appeal.getWhat() ));
 		    	
 		    	cell = row.createCell(2); 
-		    	cell.setCellValue(new HSSFRichTextString(Integer.toString(appeal.getId_imns().getNumber()) ));
+		    	cell.setCellValue(new HSSFRichTextString( appeal.getImns() ));
 		    	
 		    	cell = row.createCell(3); 
 		    	cell.setCellValue(new HSSFRichTextString( appeal.getDone() ));

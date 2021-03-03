@@ -12,13 +12,13 @@ public class AppearDataForm {
 	private String 	done;
 	private String 	type;
 	private String 	unit;
-	private int		imns;
+	private String	imns[];
 	
 	public AppearDataForm() {
 		this.id = 0;
 	}
 
-	public AppearDataForm(int id, String date, String who, String what, String result, String done, String type, String unit, int imns, String message) {
+	public AppearDataForm(int id, String date, String who, String what, String result, String done, String type, String unit, String[] imns, String message) {
 		super();
 		this.id = id;
 		this.date = date;
@@ -96,11 +96,23 @@ public class AppearDataForm {
 		this.unit = unit;
 	}
 	
-	public int getImns() {
+	public String[] getImns() {
 		return imns;
 	}
+	
+	public String getImns2() {
+		String buf="";
+		for (String str:this.imns) {
+			if (buf.equals("")) {
+				buf += str;
+			}else {
+				buf += ","+str;
+			}
+		}
+		return buf;
+	}
 
-	public void setImns(int imns) {
+	public void setImns(String[] imns) {
 		this.imns = imns;
 	}
 
@@ -126,7 +138,11 @@ public class AppearDataForm {
 		this.done = appeal.getDone();
 		this.type = appeal.getType();
 		this.unit = appeal.getUnit();
-		this.imns = appeal.getId_imns().getId();
+		if (appeal.getImns() != null) {
+			this.imns = appeal.getImns().split(",");
+		}else {
+			this.imns = null;
+		}
 	} 
 	
 }

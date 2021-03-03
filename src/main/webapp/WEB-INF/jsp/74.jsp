@@ -37,7 +37,7 @@
 						<tr>
 							<td>${appeals.getDateMessage()}</td>
 							<td>${appeals.getWhat()}</td>
-							<td>${appeals.getId_imns().getNumber()}</td>
+							<td>${appeals.getImns()}</td>
 							<td>${appeals.getDone()}</td>
 							<td>${appeals.getUnit()}</td>
 						</tr>
