@@ -214,21 +214,21 @@ public class IndexController {
 		  
 		  switch (name) {
 				case "Отчет по жалобам":					
-					appealList = appealsService.getListReport7(admin, "%Письмо%", reportDataForm.getFrom(), reportDataForm.getTo());
+					appealList = appealsService.getListReport7(admin, "%Жалоба%", reportDataForm.getFrom(), reportDataForm.getTo());
 				  
 					modelView = new ModelAndView("7");
 					modelView.addObject("reportsList7", appealList);
 					break;
 					
 				case "Письма":
-					appealList = appealsService.getListReport74(admin, "%Письмо%", reportDataForm.getFrom(), reportDataForm.getTo());
+					appealList = appealsService.getListReport74(admin, "%Жалоба%", reportDataForm.getFrom(), reportDataForm.getTo());
 					  
 					modelView = new ModelAndView("74");
 					modelView.addObject("reportsList74", appealList);
 					break;
 					
 				case "Excel отчет по жалобам":
-					appealList = appealsService.getListReport7(admin, "%Письмо%", reportDataForm.getFrom(), reportDataForm.getTo());
+					appealList = appealsService.getListReport7(admin, "%Жалоба%", reportDataForm.getFrom(), reportDataForm.getTo());
 					String path = exelDocument.createReport7(appealList, admin.getImns());
 					try {
 						File downloadFile = new File(path);
@@ -254,7 +254,7 @@ public class IndexController {
 					break;
 					
 				case "Excel Письма":
-					appealList = appealsService.getListReport74(admin, "%Письмо%", reportDataForm.getFrom(), reportDataForm.getTo());
+					appealList = appealsService.getListReport74(admin, "%Жалоба%", reportDataForm.getFrom(), reportDataForm.getTo());
 					
 					String path2 = exelDocument.createReport74(appealList, admin.getImns());
 					try {

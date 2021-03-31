@@ -81,11 +81,11 @@
 					<label>Выберите ИМНС</label><form:select path="imns" id="imns" multiple="true" items="${imnsList}" itemValue="number" itemLabel="number"></form:select>
 				</p>
 				<p><form:input path="date" id="date" readonly="true" onclick='choose_date(this);' title='Дата рассмотрения жалобы' placeholder="Дата рассмотрения жалобы" style="width:1000px"/></p>
-				<p><form:input path="message" autofocus="true" title='Дата и номер письма' placeholder='Дата и номер письма' style='width:1000px' /></p>
+				<p><form:input path="message" autofocus="true" title='Дата и номер письма, предписания, иного документа' placeholder='Дата и номер письма, предписания, иного документа' style='width:1000px' /></p>
 				<p><form:input path="who"  title='Наименование плательщика' placeholder="Наименование плательщика" style="width:1000px"/></p>
-				<p><form:input path="what"  title="Суть жалобы / Суть нарушений в письме МНС" placeholder="Суть жалобы / Суть нарушений в письме МНС"  style="width:1000px"/></p>
+				<p><form:input path="what"  title="Суть жалобы / Суть нарушений в письме, предписании, ином документе" placeholder="Суть жалобы / Суть нарушений в письме, предписании, ином документе"  style="width:1000px"/></p>
 				<p><form:input path="result"  title="Результат рассмотрения жалобы (Удовлетворена или нет)" placeholder="Результат рассмотрения жалобы"  style="width:1000px"/></p>
-				<p><form:input path="done"  title="Что сделано / Результат проделанной работы, направленной на устранение нарушений, отраженных в письме МНС" placeholder="Что сделано / Результат проделанной работы, направленной на устранение нарушений, отраженных в письме МНС"  style="width:1000px"/></p>
+				<p><form:input path="done"  title="Что сделано / Результат проделанной работы, направленной на устранение нарушений, отраженных в письме, предписании, ином документе" placeholder="Что сделано / Результат проделанной работы, направленной на устранение нарушений, отраженных в письме, предписании, ином документе"  style="width:1000px"/></p>
 				<p>
 					<form:select path="type">
 						<form:options items="${typeList}"/>
