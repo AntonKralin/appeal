@@ -109,7 +109,10 @@ public class ExelDocument {
 		    	cell = row.createCell(3); 
 		    	cell.setCellValue(new HSSFRichTextString( appeal.getDone() ));
 		    	
-		    	cell = row.createCell(8); 
+		    	cell = row.createCell(4); 
+		    	cell.setCellValue(new HSSFRichTextString( appeal.getType() ));
+		    	
+		    	cell = row.createCell(5); 
 		    	cell.setCellValue(new HSSFRichTextString( appeal.getUnit() ));
 		    	
 		    	count++;
@@ -175,6 +178,9 @@ public class ExelDocument {
     	cell.setCellValue(new HSSFRichTextString("Результат проделанной работы, направленной на устранение нарушений"));
     	
     	cell = row.createCell(4); 
+    	cell.setCellValue(new HSSFRichTextString("Вид документа"));
+    	
+    	cell = row.createCell(5); 
     	cell.setCellValue(new HSSFRichTextString("Управление, самостоятельный отдел, к компетенции которого относится рассматриваемый вопрос"));
 
 	}

@@ -103,11 +103,11 @@
 				<p><form:input path="to" id="to" readonly="true" onclick='choose_date(this);' title='По' placeholder="По" style="width:500px"/></p>
 				<p>
 					<input type="submit" name="button" id="7" value="Отчет по жалобам"/>
-					<input type="submit" name="button" id="74" value="Письма МНС"/>
+					<input type="submit" name="button" id="74" value="Письма"/>
 				</p>
 				<p>
 					<input type="submit" name="button" id="exel7" value="Excel отчет по жалобам"/>
-					<input type="submit" name="button" id="exel74" value="Excel Письма МНС"/>
+					<input type="submit" name="button" id="exel74" value="Excel Письма"/>
 				</p>
 			</form:form>
 		</div>

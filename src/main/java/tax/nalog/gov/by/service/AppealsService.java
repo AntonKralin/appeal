@@ -97,10 +97,10 @@ public class AppealsService {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		
 		if (admin.getAccess() == 1) {			
-			hql = "FROM Appeals where type= :param2 AND (date BETWEEN :param3 AND :param4) ORDER BY id";
+			hql = "FROM Appeals where type LIKE :param2 AND (date BETWEEN :param3 AND :param4) ORDER BY id";
 			query = session.createQuery(hql,Appeals.class);
 		}else {			
-			hql = "FROM Appeals where id_imns = :param AND type= :param2 AND (date BETWEEN :param3 AND :param4) ORDER BY id";
+			hql = "FROM Appeals where id_imns = :param AND type LIKE :param2 AND (date BETWEEN :param3 AND :param4) ORDER BY id";
 			query = session.createQuery(hql,Appeals.class);
 			query.setParameter("param", admin.getImns().getId());
 			
@@ -142,10 +142,10 @@ public class AppealsService {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		
 		if (admin.getAccess() == 1) {			
-			hql = "FROM Appeals where type != :param2 AND (date BETWEEN :param3 AND :param4)  ORDER BY id";
+			hql = "FROM Appeals where type NOT LIKE :param2 AND (date BETWEEN :param3 AND :param4)  ORDER BY id";
 			query = session.createQuery(hql,Appeals.class);
 		}else {			
-			hql = "FROM Appeals where id_imns = :param AND type != :param2 AND (date BETWEEN :param3 AND :param4)  ORDER BY id";
+			hql = "FROM Appeals where id_imns = :param AND type NOT LIKE :param2 AND (date BETWEEN :param3 AND :param4)  ORDER BY id";
 			query = session.createQuery(hql,Appeals.class);
 			query.setParameter("param", admin.getImns().getId());
 		}

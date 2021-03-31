@@ -37,7 +37,7 @@ public class IndexController {
 	
 	private static final Logger logger = Logger.getLogger(IndexController.class);
 	private Map<String, String> typeList;
-	private String[] types = {"7.1 Жалоба в район", "7.2 Жалоба в область", "7.3 Жалоба в МНС", "7.4 Письмо МНС"};
+	private String[] types = {"7.1 Жалоба в район", "7.2 Жалоба в область", "7.3 Жалоба в МНС", "7.4 Жалоба в суд", "7.5 Предписание прокуратуры", "7.6 Письмо МНС", "7.7 Письмо область", "Иной документ"};
 	
 	@Autowired 
 	private HttpSession httpSession;
@@ -48,10 +48,9 @@ public class IndexController {
 		ctx.close();
 		
 		typeList = new TreeMap<String, String>();
-		typeList.put(types[0], types[0]);
-		typeList.put(types[1], types[1]);
-		typeList.put(types[2], types[2]);
-		typeList.put(types[3], types[3]);
+		for (int i=0; i<types.length; i++) {
+			typeList.put(types[i], types[i]);
+		}
 	}
 	
 	@GetMapping("/")
@@ -215,21 +214,21 @@ public class IndexController {
 		  
 		  switch (name) {
 				case "Отчет по жалобам":					
-					appealList = appealsService.getListReport7(admin, types[3], reportDataForm.getFrom(), reportDataForm.getTo());
+					appealList = appealsService.getListReport7(admin, "%Письмо%", reportDataForm.getFrom(), reportDataForm.getTo());
 				  
 					modelView = new ModelAndView("7");
 					modelView.addObject("reportsList7", appealList);
 					break;
 					
-				case "Письма МНС":
-					appealList = appealsService.getListReport74(admin, types[3], reportDataForm.getFrom(), reportDataForm.getTo());
+				case "Письма":
+					appealList = appealsService.getListReport74(admin, "%Письмо%", reportDataForm.getFrom(), reportDataForm.getTo());
 					  
 					modelView = new ModelAndView("74");
 					modelView.addObject("reportsList74", appealList);
 					break;
 					
 				case "Excel отчет по жалобам":
-					appealList = appealsService.getListReport7(admin, types[3], reportDataForm.getFrom(), reportDataForm.getTo());
+					appealList = appealsService.getListReport7(admin, "%Письмо%", reportDataForm.getFrom(), reportDataForm.getTo());
 					String path = exelDocument.createReport7(appealList, admin.getImns());
 					try {
 						File downloadFile = new File(path);
@@ -254,8 +253,8 @@ public class IndexController {
 					}
 					break;
 					
-				case "Excel Письма МНС":
-					appealList = appealsService.getListReport74(admin, types[3], reportDataForm.getFrom(), reportDataForm.getTo());
+				case "Excel Письма":
+					appealList = appealsService.getListReport74(admin, "%Письмо%", reportDataForm.getFrom(), reportDataForm.getTo());
 					
 					String path2 = exelDocument.createReport74(appealList, admin.getImns());
 					try {
