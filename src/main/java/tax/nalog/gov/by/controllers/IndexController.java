@@ -37,7 +37,9 @@ public class IndexController {
 	
 	private static final Logger logger = Logger.getLogger(IndexController.class);
 	private Map<String, String> typeList;
-	private String[] types = {"7.1 Жалоба в район", "7.2 Жалоба в область", "7.3 Жалоба в МНС", "7.4 Жалоба в суд", "7.5 Предписание прокуратуры", "7.6 Письмо МНС", "7.7 Письмо область", "Иной документ"};
+	private String[] types = {	"7.1 Жалоба в район", "7.2 Жалоба в область", "7.3 Жалоба в МНС", "7.4 Жалоба в суд", 
+								"7.5 Жалоба в ВОИК", "7.6 Предписание прокуратуры", "7.7 Письмо МНС", "7.8 Письмо область", 
+								"Иной документ"};
 	
 	@Autowired 
 	private HttpSession httpSession;

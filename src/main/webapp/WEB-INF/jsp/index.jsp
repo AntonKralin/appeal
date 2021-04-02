@@ -21,12 +21,15 @@
 			<!-- <hr> -->
 			<br>
 			<p><h3 style="text-align:center; background:#66cc99; font-size:18pt; padding:1em;">«Жалобы»</h3>
-			<form:form method = "POST" modelAttribute="passwordForm" action = "#">
+			<form:form  id="pass" method = "POST" modelAttribute="passwordForm" action = "#">
 				<p><h2>Авторизуйтесь:</h2>
 				Логин:
-				<form:input path = "username"/>
+				<br>
+				<form:input style="width:100%" path = "username"/>
+				<br>
 				Пароль:
-				<td><form:password path = "password" /></td>
+				<br>
+				<td><form:password style="width:100%" path = "password" /></td>
 				<p></p>
 				<input class="button" style="width:147px" type="submit" name="submit" value="Войти" title="Войти">
 				<input class="button" style="width:147px" type="reset" value="Очистить">
