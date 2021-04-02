@@ -84,14 +84,22 @@
 				<p><form:input path="message" autofocus="true" title='Дата и номер письма, предписания, иного документа' placeholder='Дата и номер письма, предписания, иного документа' style='width:1000px' /></p>
 				<p><form:input path="who"  title='Наименование плательщика' placeholder="Наименование плательщика" style="width:1000px"/></p>
 				<p><form:input path="what"  title="Суть жалобы / Суть нарушений в письме, предписании, ином документе" placeholder="Суть жалобы / Суть нарушений в письме, предписании, ином документе"  style="width:1000px"/></p>
-				<p><form:input path="result"  title="Результат рассмотрения жалобы (Удовлетворена или нет)" placeholder="Результат рассмотрения жалобы"  style="width:1000px"/></p>
+				<p>
+					<form:select path="result">
+						<form:options items="${resultList}" />
+					</form:select>
+				</p>
 				<p><form:input path="done"  title="Что сделано / Результат проделанной работы, направленной на устранение нарушений, отраженных в письме, предписании, ином документе" placeholder="Что сделано / Результат проделанной работы, направленной на устранение нарушений, отраженных в письме, предписании, ином документе"  style="width:1000px"/></p>
 				<p>
 					<form:select path="type">
 						<form:options items="${typeList}"/>
 					</form:select>
 				</p>
-				<p><form:input path="unit"  title="Управление, самостоятельный отдел, к компетенции которого относится рассматриваемый вопрос" placeholder="Управление, самостоятельный отдел"  style="width:1000px"/></p>			
+				<p>
+					<form:select path="unit">
+						<form:options items="${departmentList}"/>
+					</form:select>
+				</p>			
 				<p><input type="submit" name="save" value="Сохранить" title="Сохранить пользователя"></p>
 			</form:form>
 		</div>

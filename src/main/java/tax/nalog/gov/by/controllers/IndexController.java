@@ -30,16 +30,18 @@ import tax.nalog.gov.by.form.AppearDataForm;
 import tax.nalog.gov.by.form.AppearIdForm;
 import tax.nalog.gov.by.service.AdminsService;
 import tax.nalog.gov.by.service.AppealsService;
+import tax.nalog.gov.by.service.DepartmentService;
 import tax.nalog.gov.by.service.ImnsService;
 
 @Controller
 public class IndexController {
 	
 	private static final Logger logger = Logger.getLogger(IndexController.class);
-	private Map<String, String> typeList;
+	private Map<String, String> typeList, resultList, departmentList;
 	private String[] types = {	"7.1 Жалоба в район", "7.2 Жалоба в область", "7.3 Жалоба в МНС", "7.4 Жалоба в суд", 
 								"7.5 Жалоба в ВОИК", "7.6 Предписание прокуратуры", "7.7 Письмо МНС", "7.8 Письмо область", 
 								"Иной документ"};
+	private String[] result = {"Удовлетворена","Не удовлетворена"};
 	
 	@Autowired 
 	private HttpSession httpSession;
@@ -53,6 +55,13 @@ public class IndexController {
 		for (int i=0; i<types.length; i++) {
 			typeList.put(types[i], types[i]);
 		}
+		
+		resultList = new TreeMap<String, String>();
+		resultList.put(result[0], result[0]);
+		resultList.put(result[1], result[1]);
+		
+		DepartmentService departmentService = new DepartmentService();
+		departmentList = departmentService.findAll();
 	}
 	
 	@GetMapping("/")
@@ -105,6 +114,8 @@ public class IndexController {
 	    modelView.addObject("appearIdForm", new AppearIdForm());
 	    modelView.addObject("reportDataForm", new ReportDataForm());
 	    modelView.addObject("typeList", typeList);
+	    modelView.addObject("resultList", resultList);
+	    modelView.addObject("departmentList", departmentList);
 	    modelView.addObject("display", false);
 	    Imns imns = admin.getImns();
 	    AppealsService appealsService = new AppealsService();
@@ -136,6 +147,8 @@ public class IndexController {
 		  	  
 		  ModelAndView modelView = new ModelAndView("main");
 		  modelView.addObject("typeList", typeList);
+		  modelView.addObject("resultList", resultList);
+		  modelView.addObject("departmentList", departmentList);
 		  
 		  ImnsService imnsService = new ImnsService();
 		  List<Imns> imnsList = new ArrayList<Imns>();
@@ -188,6 +201,8 @@ public class IndexController {
 		  modelView.addObject("appearIdForm", new AppearIdForm());
 		  modelView.addObject("reportDataForm", new ReportDataForm());
 		  modelView.addObject("typeList", typeList);
+		  modelView.addObject("resultList", resultList);
+		  modelView.addObject("departmentList", departmentList);
 		  Imns imns = admin.getImns();
 		  List<Appeals> listAppeals = null;
 	    	listAppeals = appealsService.getListByImns(imns);

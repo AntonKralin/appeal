@@ -92,6 +92,7 @@ public class HibernateUtil {
 		config.addAnnotatedClass(Admins.class);
 		config.addAnnotatedClass(Appeals.class);
 		config.addAnnotatedClass(Imns.class);
+		config.addAnnotatedClass(Departments.class);
 		return config;
 	}
 	
