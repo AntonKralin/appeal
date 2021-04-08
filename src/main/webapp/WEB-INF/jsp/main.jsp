@@ -80,8 +80,8 @@
 				<p>
 					<label>Выберите ИМНС</label><form:select path="imns" id="imns" multiple="true" items="${imnsList}" itemValue="number" itemLabel="number"></form:select>
 				</p>
-				<p><form:input path="date" id="date" readonly="true" onclick='choose_date(this);' title='Дата рассмотрения жалобы' placeholder="Дата рассмотрения жалобы" style="width:1000px"/></p>
-				<p><form:input path="message" autofocus="true" title='Дата и номер письма, предписания, иного документа' placeholder='Дата и номер письма, предписания, иного документа' style='width:1000px' /></p>
+				<p><form:input path="date" id="date" readonly="true" onclick='choose_date(this);' title='Дата рассмотрения жалобы, письма' placeholder="Дата рассмотрения жалобы, письма" style="width:1000px"/></p>
+				<p><form:input path="message" autofocus="true" title='Номер письма, предписания, иного документа' placeholder='Номер письма, предписания, иного документа' style='width:1000px' /></p>
 				<p><form:input path="who"  title='Наименование плательщика' placeholder="Наименование плательщика" style="width:1000px"/></p>
 				<p><form:input path="what"  title="Суть жалобы / Суть нарушений в письме, предписании, ином документе" placeholder="Суть жалобы / Суть нарушений в письме, предписании, ином документе"  style="width:1000px"/></p>
 				<p>
