@@ -41,7 +41,7 @@ public class IndexController {
 	private String[] types = {	"7.1 Жалоба в район", "7.2 Жалоба в область", "7.3 Жалоба в МНС", "7.4 Жалоба в суд", 
 								"7.5 Жалоба в ВОИК", "7.6 Предписание прокуратуры", "7.7 Письмо МНС", "7.8 Письмо область", 
 								"Иной документ"};
-	private String[] result = {"Удовлетворена","Не удовлетворена"};
+	private String[] result = {" ","Удовлетворена","Не удовлетворена"};
 	
 	@Autowired 
 	private HttpSession httpSession;
@@ -59,6 +59,7 @@ public class IndexController {
 		resultList = new TreeMap<String, String>();
 		resultList.put(result[0], result[0]);
 		resultList.put(result[1], result[1]);
+		resultList.put(result[2], result[2]);
 		
 		DepartmentService departmentService = new DepartmentService();
 		departmentList = departmentService.findAll();
