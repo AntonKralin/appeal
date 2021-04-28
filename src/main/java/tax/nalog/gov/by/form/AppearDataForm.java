@@ -1,5 +1,8 @@
 package tax.nalog.gov.by.form;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import tax.nalog.gov.by.entity.Appeals;
 
 public class AppearDataForm {
@@ -16,6 +19,9 @@ public class AppearDataForm {
 	
 	public AppearDataForm() {
 		this.id = 0;
+		SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd"); 
+		Date parsingDate = new Date();
+		this.date = ft.format(parsingDate);
 	}
 
 	public AppearDataForm(int id, String date, String who, String what, String result, String done, String type, String unit, String[] imns, String message) {

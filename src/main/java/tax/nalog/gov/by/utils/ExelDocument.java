@@ -98,21 +98,24 @@ public class ExelDocument {
 				HSSFCell cell = null;
 				
 				cell = row.createCell(0); 
+		    	cell.setCellValue(new HSSFRichTextString( Integer.toString(appeal.getId())) );
+				
+				cell = row.createCell(1); 
 		    	cell.setCellValue(new HSSFRichTextString( appeal.getDateMessage() ));
 		    	
-		    	cell = row.createCell(1); 
+		    	cell = row.createCell(2); 
 		    	cell.setCellValue(new HSSFRichTextString( appeal.getWhat() ));
 		    	
-		    	cell = row.createCell(2); 
+		    	cell = row.createCell(3); 
 		    	cell.setCellValue(new HSSFRichTextString( appeal.getImns() ));
 		    	
-		    	cell = row.createCell(3); 
+		    	cell = row.createCell(4); 
 		    	cell.setCellValue(new HSSFRichTextString( appeal.getDone() ));
 		    	
-		    	cell = row.createCell(4); 
+		    	cell = row.createCell(5); 
 		    	cell.setCellValue(new HSSFRichTextString( appeal.getType() ));
 		    	
-		    	cell = row.createCell(5); 
+		    	cell = row.createCell(6); 
 		    	cell.setCellValue(new HSSFRichTextString( appeal.getUnit() ));
 		    	
 		    	count++;
@@ -166,21 +169,24 @@ public class ExelDocument {
 		HSSFCell cell = null;
 		
 		cell = row.createCell(0); 
+    	cell.setCellValue(new HSSFRichTextString("№ п/п"));
+		
+		cell = row.createCell(1); 
     	cell.setCellValue(new HSSFRichTextString("Дата и номер письма МНС"));
     	
-    	cell = row.createCell(1); 
+    	cell = row.createCell(2); 
     	cell.setCellValue(new HSSFRichTextString("Суть нарушений"));
     	
-    	cell = row.createCell(2); 
+    	cell = row.createCell(3); 
     	cell.setCellValue(new HSSFRichTextString("ИМНС, в которых установлены нарушения"));
     	
-    	cell = row.createCell(3); 
+    	cell = row.createCell(4); 
     	cell.setCellValue(new HSSFRichTextString("Результат проделанной работы, направленной на устранение нарушений"));
     	
-    	cell = row.createCell(4); 
+    	cell = row.createCell(5); 
     	cell.setCellValue(new HSSFRichTextString("Вид документа"));
     	
-    	cell = row.createCell(5); 
+    	cell = row.createCell(6); 
     	cell.setCellValue(new HSSFRichTextString("Управление, самостоятельный отдел, к компетенции которого относится рассматриваемый вопрос"));
 
 	}

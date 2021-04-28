@@ -26,28 +26,28 @@
 			<thead>
 				<tr>
 					<td width="2%">№ п/п</td>
-						<td width="10%">Дата рассмотрения</td>
-						<td width="5%">Вид документа</td>
-						<td width="13%">Наименование плательщика</td>
-						<td width="30%">Суть жалобы</td>
-						<td width="10%">Результат рассмотрения (удовлетворена или нет)</td>
-						<td width="23%">Что сделано (в случае удовлетворения)</td>
-						<td width="7%">Управление, самостоятельный отдел, к компетенции которого относится рассматриваемый вопрос</td>
-						<td width="5%">ИМНС</td>			
+					<td width="10%">Дата рассмотрения</td>
+					<td width="5%">Вид документа</td>
+					<td width="13%">Наименование плательщика</td>
+					<td width="30%">Суть жалобы</td>
+					<td width="10%">Результат рассмотрения (удовлетворена или нет)</td>
+					<td width="23%">Что сделано (в случае удовлетворения)</td>
+					<td width="7%">Управление, самостоятельный отдел, к компетенции которого относится рассматриваемый вопрос</td>
+					<td width="5%">ИМНС</td>			
 				</tr>
 			</thead>
 			<tbody>		
 					<c:forEach var="appeals" items="${reportsList7}">
 						<tr>
 							<td>${appeals.getId()}</td>
-								<td>${appeals.getDateMessage()}</td>
-								<td>${appeals.getType()}</td>
-								<td>${appeals.getWho()}</td>
-								<td>${appeals.getWhat()}</td>
-								<td>${appeals.getResult()}</td>
-								<td>${appeals.getDone()}</td>							
-								<td>${appeals.getUnit()}</td>
-								<td>${appeals.getImns()}</td>
+							<td>${appeals.getDateMessage()}</td>
+							<td>${appeals.getType()}</td>
+							<td>${appeals.getWho()}</td>
+							<td>${appeals.getWhat()}</td>
+							<td>${appeals.getResult()}</td>
+							<td>${appeals.getDone()}</td>							
+							<td>${appeals.getUnit()}</td>
+							<td>${appeals.getImns()}</td>
 						</tr>
 					</c:forEach>	
 			</tbody>

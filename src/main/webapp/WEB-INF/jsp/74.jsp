@@ -25,6 +25,7 @@
 		<table border="1" width="100%" cellpading="1" style="background-color: white;" class="sortable">
 			<thead>
 				<tr>
+					<td width="2%">№ п/п</td>
 					<td width="5%">Дата и номер письма МНС</td>
 					<td width="30%">Суть нарушений</td>
 					<td width="10%">ИМНС, в которых установлены нарушения</td>
@@ -36,6 +37,7 @@
 			<tbody>		
 					<c:forEach var="appeals" items="${reportsList74}">
 						<tr>
+							<td>${appeals.getId()}</td>
 							<td>${appeals.getDateMessage()}</td>
 							<td>${appeals.getWhat()}</td>
 							<td>${appeals.getImns()}</td>
