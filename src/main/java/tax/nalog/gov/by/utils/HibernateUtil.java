@@ -38,6 +38,7 @@ public class HibernateUtil {
 				settings.put("hibernate.connection.CharSet", "utf-8");
 				settings.put("hibernate.connection.useUnicode", true);
 				settings.put("hibernate.connection.characterEncoding", "utf-8");
+				settings.put("hibernate.connection.pool_size", "100");
 				settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 				settings.put(Environment.HBM2DDL_AUTO, "update");
 				//settings.put(Environment.HBM2DDL_AUTO, "create");
